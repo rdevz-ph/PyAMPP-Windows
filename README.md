@@ -30,6 +30,12 @@ PyAMPP is an advanced Windows-based orchestration utility designed to automate t
 - **phpMyAdmin Security:** Automated deployment with dynamic `blowfish_secret` generation and restricted local-only access controls.
 - **LAN Toggle:** Rapidly switch between local-loopback and network-exposed states with automatic subnet detection for Apache access control.
 
+## Visual Interface
+
+![PyAMPP Dashboard](screenshots/Screenshot.png)
+
+*The centralized dashboard provides real-time monitoring and one-click control over the entire development stack.*
+
 ## Technical Specifications
 
 - **Engine:** Python 3.x
