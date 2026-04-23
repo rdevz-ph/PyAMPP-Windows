@@ -6,70 +6,57 @@
 
 ## Project Overview
 
-PyAMPP is a specialized Windows-based management utility designed to automate the deployment and orchestration of a local web development environment. It facilitates the integrated management of Apache HTTP Server, MySQL Database, PHP, and phpMyAdmin through a centralized graphical interface.
+PyAMPP is an advanced Windows-based orchestration utility designed to automate the deployment and management of a local web development environment. It provides a centralized graphical interface for the integrated management of Apache HTTP Server, MySQL Database, PHP, and phpMyAdmin.
 
 > [!NOTE]
 > This software is developed for personal use and internal development purposes. The source code is not available for public distribution or external contribution.
 
-## Purpose and Development Rationale
+## Core Objectives
 
-PyAMPP was engineered to address common inefficiencies found in traditional WAMP (Windows, Apache, MySQL, PHP) distributions. The project focuses on three primary objectives:
+1.  **True Portability:** Consolidates all binaries, configuration templates, and data directories into a single root directory, ensuring the environment remains independent of the host system.
+2.  **Zero-Configuration Logic:** Dynamically calculates paths, ports, and module mappings at runtime, eliminating the need for manual edits to `httpd.conf`, `my.ini`, or `php.ini`.
+3.  **Automated Lifecycle:** A built-in wizard handles the retrieval, validation, and extraction of official binaries, keeping the stack current with zero administrative overhead.
 
-1.  **Environment Portability:** By consolidating binaries, configuration files, and data directories into a single, user-defined root directory, the system ensures that the entire development environment remains portable and independent of system-wide installations.
-2.  **Configuration Automation:** The application is distributed as a standalone Windows executable, eliminating the requirement for manual modification of configuration files (such as httpd.conf and php.ini). It dynamically calculates paths and network settings at runtime to ensure consistent service interoperability.
-3.  **On-Demand Provisioning:** PyAMPP includes an automated deployment wizard that retrieves, validates, and extracts the latest compatible binaries directly from official repositories, ensuring the stack remains current with minimal administrative overhead.
+## Advanced Features
 
-## Core Features
+### Intelligent Service Orchestration
+- **Detached Execution:** Services run as independent process trees, ensuring stability even if the GUI is closed.
+- **Real-Time Monitoring:** Continuous tracking of Process IDs (PIDs) and port availability with an integrated log aggregator.
+- **Unified Controls:** One-click "Start All", "Stop All", and "Restart All" functionality.
 
-### Automated Infrastructure Deployment
-The built-in setup wizard manages the lifecycle of component installation, including remote asset retrieval, integrity verification, and directory structuring. It handles the extraction and placement of binaries to ensure a functional environment from a clean state.
-
-### Service Orchestration
-The dashboard provides granular control over system processes. Users can initialize, terminate, or restart Apache and MySQL services independently or as a unified stack. The application monitors process IDs (PIDs) and port availability to provide real-time status reporting.
-
-### Dynamic Configuration Mapping
-- **Apache Integration:** Automatically configures Module loads, DocumentRoot directives, and Directory permissions. It seamlessly maps the PHP module and handler within the Apache configuration.
-- **MySQL Initialization:** Dynamically generates my.ini files based on the host environment and initializes data directories using secure-by-default parameters for local development.
-- **PHP Environment:** Provides tools to register PHP within the global system path via automated PowerShell scripts, enabling CLI accessibility across the host OS.
-
-### Network and Diagnostic Tools
-- **LAN Accessibility Toggle:** Allows for the rapid switching between local-loopback and network-exposed states.
-- **Integrated Logging:** Features a real-time log aggregator that captures standard output and error streams from underlying services for rapid troubleshooting.
+### Dynamic Environment Mapping
+- **PHP Extension Automation:** Automatically enables and maps essential extensions (`mysqli`, `mbstring`, `openssl`, `curl`, `pdo_mysql`, `zip`, `gd`, `fileinfo`, `intl`, `exif`, etc.) using absolute local paths.
+- **Global CLI Integration:** Built-in PowerShell automation to register the portable PHP binary in the System PATH, enabling CLI tools like Composer or Artisan.
+- **phpMyAdmin Security:** Automated deployment with dynamic `blowfish_secret` generation and restricted local-only access controls.
+- **LAN Toggle:** Rapidly switch between local-loopback and network-exposed states with automatic subnet detection for Apache access control.
 
 ## Technical Specifications
 
-- **Language:** Python 3.x
-- **Interface:** CustomTkinter (High-DPI aware graphical framework)
-- **Process Management:** Windows Subprocess API with detached process execution.
-- **Networking:** Synchronous socket monitoring for service validation.
-- **Components Managed:**
-    - Apache HTTP Server (Apache Lounge Binaries)
-    - MySQL Community Server (8.0.x)
-    - PHP (Thread Safe Distributions, 8.3.x)
-    - phpMyAdmin (Multi-language Distributions)
+- **Engine:** Python 3.x
+- **GUI:** CustomTkinter (Modern, High-DPI aware)
+- **Networking:** Synchronous socket validation and subnet discovery.
+- **Components:**
+    - **Apache:** VS17 Win64 (Apache Lounge) with Windows performance optimizations.
+    - **MySQL:** 8.0.x Community Server with automated `--initialize-insecure` routine.
+    - **PHP:** Thread Safe 8.3.x distributions.
+    - **phpMyAdmin:** Multi-language web interface.
 
 ## System Architecture
 
-The project is structured into distinct layers to separate logic from presentation:
+- **Core Layer:** Management of binaries, configuration templating, and low-level process control.
+- **GUI Layer:** Modular dashboard, setup wizard, log aggregator, and global settings.
+- **Automation Layer:** PowerShell integration for system-wide environment pathing.
 
-- **Core Layer:** Manages binary downloads, file system operations, configuration templating, and low-level process control.
-- **GUI Layer:** Provides a modular interface including the primary Dashboard, Setup Wizard, and Configuration Settings.
-- **Data Layer:** Maintains persistent application state and user-defined environment variables.
+## Documentation
 
-## Visual Interface
+For more detailed information, technical guides, and visual overviews, visit our documentation site:
+**[View Detailed Documentation](https://rdevz-ph.github.io/PyAMPP-Windows/)**
 
-![PyAMPP Dashboard](screenshots/Screenshot.png)
+## Legal
 
-*The centralized dashboard provides real-time monitoring and one-click control over the entire development stack.*
-
-- **Service Dashboard:** Real-time monitoring and control of Apache and MySQL services.
-- **Setup Wizard:** Step-by-step automated deployment of core components.
-- **Log Aggregator:** Real-time console output for diagnostic and verification purposes.
-
-## Legal and Distribution
-
-This software is provided under a proprietary license. For detailed terms of use, please refer to the [LICENSE](LICENSE) file.
+Copyright (c) 2026 Romel Brosas. All Rights Reserved.
+Provided under a proprietary license. See the [LICENSE](LICENSE) file for details.
 
 ## Disclaimer
 
-PyAMPP is intended exclusively for local development and testing environments. The default configurations prioritize development speed and local accessibility over production-grade security hardening. It should not be utilized for hosting public-facing services or sensitive production data.
+PyAMPP is intended exclusively for local development and testing. Default configurations prioritize development speed over production-grade security hardening. Do not use for hosting public-facing services.
