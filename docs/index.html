@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PyAMPP - Portable Web Development Stack Manager</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
         <div class="container nav-container">
@@ -14,7 +16,8 @@
                 <a href="#" class="logo">PyAMPP</a>
             </div>
             <nav>
-                <a href="https://github.com/rdevz-ph/PyAMPP-Windows" class="accent-link" style="color: var(--accent); text-decoration: none; font-weight: 600;">GitHub</a>
+                <a href="https://github.com/rdevz-ph/PyAMPP-Windows" class="accent-link"
+                    style="color: var(--accent); text-decoration: none; font-weight: 600;">GitHub</a>
             </nav>
         </div>
     </header>
@@ -23,14 +26,18 @@
         <div class="container">
             <img src="images/pyampp.png?v=1.0.1" alt="PyAMPP Logo" class="hero-logo">
             <h1>PyAMPP</h1>
-            <p>A specialized Windows-based management utility designed to automate the deployment and orchestration of a local web development environment.</p>
+            <p>A specialized Windows-based management utility designed to automate the deployment and orchestration of a
+                local web development environment.</p>
             <div class="badges">
-                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=downloads&color=blue&v=1.0.1" alt="Downloads">
-                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=version&color=brightgreen&v=1.0.1" alt="Version">
-                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=name&color=blue&v=1.0.1" alt="Release">
+                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=downloads&color=blue&v=1.0.1"
+                    alt="Downloads">
+                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=version&color=brightgreen&v=1.0.1"
+                    alt="Version">
+                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=name&color=blue&v=1.0.1"
+                    alt="Release">
             </div>
             <div class="screenshot-container">
-                <img src="images/screenshot.png?v=1.0.1" alt="PyAMPP Dashboard">
+                <img src="images/Screenshot.png?v=1.0.1" alt="PyAMPP Dashboard">
             </div>
         </div>
     </div>
@@ -50,9 +57,12 @@
         <article>
             <section id="overview">
                 <h2>Project Overview</h2>
-                <p>PyAMPP is an advanced orchestration utility that automates the lifecycle of a WAMP stack. It eliminates the friction of manual configuration by dynamically generating environment-specific parameters at runtime, ensuring a "it just works" experience for local web development.</p>
+                <p>PyAMPP is an advanced orchestration utility that automates the lifecycle of a WAMP stack. It
+                    eliminates the friction of manual configuration by dynamically generating environment-specific
+                    parameters at runtime, ensuring a "it just works" experience for local web development.</p>
                 <blockquote>
-                    This software is developed for personal use and internal development purposes. The source code is not available for public distribution or external contribution.
+                    This software is developed for personal use and internal development purposes. The source code is
+                    not available for public distribution or external contribution.
                 </blockquote>
             </section>
 
@@ -61,35 +71,44 @@
                 <div class="feature-grid">
                     <div class="feature-card">
                         <h4>Automated Setup Wizard</h4>
-                        <p>One-click deployment that handles remote asset retrieval, integrity validation, and structured extraction of Apache, MySQL, PHP, and phpMyAdmin.</p>
+                        <p>One-click deployment that handles remote asset retrieval, integrity validation, and
+                            structured extraction of Apache, MySQL, PHP, and phpMyAdmin.</p>
                     </div>
                     <div class="feature-card">
                         <h4>Granular Service Control</h4>
-                        <p>Independent process management for Apache and MySQL. Features including real-time PID monitoring, port availability checks, and unified stack orchestration.</p>
+                        <p>Independent process management for Apache and MySQL. Features including real-time PID
+                            monitoring, port availability checks, and unified stack orchestration.</p>
                     </div>
                     <div class="feature-card">
                         <h4>Intelligent PHP Configuration</h4>
-                        <p>Auto-generates <code>php.ini</code> with pre-configured extensions (mysqli, mbstring, openssl, curl, pdo_mysql, zip, gd, fileinfo, intl, exif, etc.) mapped to absolute local paths.</p>
+                        <p>Auto-generates <code>php.ini</code> with pre-configured extensions (mysqli, mbstring,
+                            openssl, curl, pdo_mysql, zip, gd, fileinfo, intl, exif, etc.) mapped to absolute local
+                            paths.</p>
                     </div>
                     <div class="feature-card">
                         <h4>Secure MySQL Initialization</h4>
-                        <p>Automates the <code>--initialize-insecure</code> routine for new MySQL data directories, ensuring immediate accessibility while maintaining local portability.</p>
+                        <p>Automates the <code>--initialize-insecure</code> routine for new MySQL data directories,
+                            ensuring immediate accessibility while maintaining local portability.</p>
                     </div>
                     <div class="feature-card">
                         <h4>Global PATH Integration</h4>
-                        <p>Integrated PowerShell automation to register the portable PHP binary within the Windows System PATH, enabling CLI usage (composer, artisan, etc.) globally.</p>
+                        <p>Integrated PowerShell automation to register the portable PHP binary within the Windows
+                            System PATH, enabling CLI usage (composer, artisan, etc.) globally.</p>
                     </div>
                     <div class="feature-card">
                         <h4>phpMyAdmin Orchestration</h4>
-                        <p>Automatic deployment to Apache <code>htdocs</code> with dynamic <code>blowfish_secret</code> generation and pre-configured local-only access controls.</p>
+                        <p>Automatic deployment to Apache <code>htdocs</code> with dynamic <code>blowfish_secret</code>
+                            generation and pre-configured local-only access controls.</p>
                     </div>
                     <div class="feature-card">
                         <h4>LAN Exposure Toggle</h4>
-                        <p>Switch between private loopback (localhost) and local network visibility. Automatically detects subnet masks to configure Apache access controls safely.</p>
+                        <p>Switch between private loopback (localhost) and local network visibility. Automatically
+                            detects subnet masks to configure Apache access controls safely.</p>
                     </div>
                     <div class="feature-card">
                         <h4>Real-time Log Aggregator</h4>
-                        <p>Captures and streams stdout and stderr from underlying service processes into a centralized dashboard for rapid diagnostic troubleshooting.</p>
+                        <p>Captures and streams stdout and stderr from underlying service processes into a centralized
+                            dashboard for rapid diagnostic troubleshooting.</p>
                     </div>
                 </div>
             </section>
@@ -98,21 +117,30 @@
                 <h2>Managed Components</h2>
                 <p>PyAMPP targets specific, high-performance distributions of standard web components:</p>
                 <ul>
-                    <li><strong>Apache HTTP Server:</strong> VS17 Win64 Binaries from Apache Lounge (configured with Windows-specific performance optimizations like <code>AcceptFilter none</code>).</li>
-                    <li><strong>MySQL Community Server:</strong> 8.0.x x64 distributions with custom <code>my.ini</code> templating.</li>
-                    <li><strong>PHP:</strong> Thread Safe 8.3.x distributions, automatically integrated as an Apache module.</li>
-                    <li><strong>phpMyAdmin:</strong> Latest multi-language releases with automated configuration mapping.</li>
+                    <li><strong>Apache HTTP Server:</strong> VS17 Win64 Binaries from Apache Lounge (configured with
+                        Windows-specific performance optimizations like <code>AcceptFilter none</code>).</li>
+                    <li><strong>MySQL Community Server:</strong> 8.0.x x64 distributions with custom <code>my.ini</code>
+                        templating.</li>
+                    <li><strong>PHP:</strong> Thread Safe 8.3.x distributions, automatically integrated as an Apache
+                        module.</li>
+                    <li><strong>phpMyAdmin:</strong> Latest multi-language releases with automated configuration
+                        mapping.</li>
                 </ul>
             </section>
 
             <section id="technical">
                 <h2>Technical Specifications</h2>
                 <ul>
-                    <li><strong>Core Logic:</strong> Python 3.x utilizing the <code>subprocess</code> API for detached process execution.</li>
-                    <li><strong>GUI Framework:</strong> CustomTkinter for a modern, High-DPI aware Windows 10/11 native look.</li>
-                    <li><strong>Networking:</strong> Synchronous socket-based port monitoring and automated subnet detection.</li>
-                    <li><strong>Configuration:</strong> JSON-based persistent state management for user preferences and environment paths.</li>
-                    <li><strong>Process Isolation:</strong> Detached process trees to ensure services remain stable independently of the GUI state.</li>
+                    <li><strong>Core Logic:</strong> Python 3.x utilizing the <code>subprocess</code> API for detached
+                        process execution.</li>
+                    <li><strong>GUI Framework:</strong> CustomTkinter for a modern, High-DPI aware Windows 10/11 native
+                        look.</li>
+                    <li><strong>Networking:</strong> Synchronous socket-based port monitoring and automated subnet
+                        detection.</li>
+                    <li><strong>Configuration:</strong> JSON-based persistent state management for user preferences and
+                        environment paths.</li>
+                    <li><strong>Process Isolation:</strong> Detached process trees to ensure services remain stable
+                        independently of the GUI state.</li>
                 </ul>
             </section>
 
@@ -120,17 +148,25 @@
                 <h2>System Architecture</h2>
                 <p>Designed with a strict separation of concerns:</p>
                 <ul>
-                    <li><strong>Core Layer:</strong> Encapsulates binary management, configuration templating (Apache <code>httpd.conf</code>, MySQL <code>my.ini</code>, PHP <code>php.ini</code>), and low-level process control.</li>
-                    <li><strong>GUI Layer:</strong> Modular interface components (Dashboard, Setup Wizard, Settings, Global PHP Setup, and Log Aggregator).</li>
-                    <li><strong>Automation Layer:</strong> PowerShell scripts for system-level integrations and automated environment pathing.</li>
+                    <li><strong>Core Layer:</strong> Encapsulates binary management, configuration templating (Apache
+                        <code>httpd.conf</code>, MySQL <code>my.ini</code>, PHP <code>php.ini</code>), and low-level
+                        process control.</li>
+                    <li><strong>GUI Layer:</strong> Modular interface components (Dashboard, Setup Wizard, Settings,
+                        Global PHP Setup, and Log Aggregator).</li>
+                    <li><strong>Automation Layer:</strong> PowerShell scripts for system-level integrations and
+                        automated environment pathing.</li>
                 </ul>
             </section>
 
             <section id="legal">
                 <h2>Legal and Distribution</h2>
-                <p>This software is provided under a proprietary license. For detailed terms of use, please refer to the LICENSE file in the repository.</p>
+                <p>This software is provided under a proprietary license. For detailed terms of use, please refer to the
+                    LICENSE file in the repository.</p>
                 <h3>Disclaimer</h3>
-                <p>PyAMPP is intended exclusively for local development and testing environments. The default configurations prioritize development speed and local accessibility over production-grade security hardening. It should not be utilized for hosting public-facing services or sensitive production data.</p>
+                <p>PyAMPP is intended exclusively for local development and testing environments. The default
+                    configurations prioritize development speed and local accessibility over production-grade security
+                    hardening. It should not be utilized for hosting public-facing services or sensitive production
+                    data.</p>
             </section>
         </article>
     </div>
@@ -141,4 +177,5 @@
         </div>
     </footer>
 </body>
+
 </html>
