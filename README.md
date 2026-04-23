@@ -1,5 +1,9 @@
 # PyAMPP: Portable Web Development Stack Manager
 
+[![Downloads](https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=downloads&color=blue&v=2)](https://github.com/rdevz-ph/PyAMPP-Windows/releases)
+[![Version](https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=version&color=brightgreen&v=2)](https://github.com/rdevz-ph/PyAMPP-Windows/releases/latest)
+[![Release](https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=name&color=blue&v=2)](https://github.com/rdevz-ph/PyAMPP-Windows/releases/latest)
+
 ## Project Overview
 
 PyAMPP is a specialized Windows-based management utility designed to automate the deployment and orchestration of a local web development environment. It facilitates the integrated management of Apache HTTP Server, MySQL Database, PHP, and phpMyAdmin through a centralized graphical interface.
