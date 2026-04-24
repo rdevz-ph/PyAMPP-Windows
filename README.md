@@ -41,7 +41,7 @@ PyAMPP is an advanced Windows-based orchestration utility designed to automate t
 PyAMPP v1.0.2 supports a wide range of verified component versions:
 
 - **PHP:** 8.4.20 (VS17), 8.3.30, 8.2.30, 8.1.34, 8.0.30, and 7.4.33 (Archive).
-- **Apache:** 2.4.66 (VS17), 2.4.63 (VS17).
+- **Apache:** 2.4.66 (VS17).
 - **MySQL:** 8.4.4 (LTS), 8.0.40, 5.7.44.
 - **phpMyAdmin:** 5.2.3, 5.2.2, 5.2.1.
 
