@@ -12,7 +12,7 @@
     <header>
         <div class="container nav-container">
             <div class="logo-group">
-                <img src="images/pyampp.png?v=1.0.1" alt="PyAMPP Logo" class="nav-logo">
+                <img src="images/pyampp.png?v=1.0.2" alt="PyAMPP Logo" class="nav-logo">
                 <a href="#" class="logo">PyAMPP</a>
             </div>
             <nav>
@@ -24,20 +24,20 @@
 
     <div class="hero">
         <div class="container">
-            <img src="images/pyampp.png?v=1.0.1" alt="PyAMPP Logo" class="hero-logo">
+            <img src="images/pyampp.png?v=1.0.2" alt="PyAMPP Logo" class="hero-logo">
             <h1>PyAMPP</h1>
             <p>A specialized Windows-based management utility designed to automate the deployment and orchestration of a
                 local web development environment.</p>
             <div class="badges">
-                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=downloads&color=blue&v=1.0.1"
+                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=downloads&color=blue&v=1.0.2"
                     alt="Downloads">
-                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=version&color=brightgreen&v=1.0.1"
+                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=version&color=brightgreen&v=1.0.2"
                     alt="Version">
-                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=name&color=blue&v=1.0.1"
+                <img src="https://my-release-badge-api.vercel.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=name&color=blue&v=1.0.2"
                     alt="Release">
             </div>
             <div class="screenshot-container">
-                <img src="images/Screenshot.png?v=1.0.1" alt="PyAMPP Dashboard">
+                <img src="images/Screenshot.png?v=1.0.2" alt="PyAMPP Dashboard">
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
             <ul>
                 <li><a href="#overview">Overview</a></li>
                 <li><a href="#features">Detailed Features</a></li>
-                <li><a href="#components">Managed Components</a></li>
+                <li><a href="#presets">Supported Presets</a></li>
                 <li><a href="#technical">Technical Specifications</a></li>
                 <li><a href="#architecture">System Architecture</a></li>
                 <li><a href="#legal">Legal & Distribution</a></li>
@@ -70,14 +70,20 @@
                 <h2>Detailed Features</h2>
                 <div class="feature-grid">
                     <div class="feature-card">
-                        <h4>Automated Setup Wizard</h4>
-                        <p>One-click deployment that handles remote asset retrieval, integrity validation, and
-                            structured extraction of Apache, MySQL, PHP, and phpMyAdmin.</p>
+                        <h4>Version Preset Selection</h4>
+                        <p>Choose from a curated list of verified component versions. From legacy PHP 7.4 to the latest 8.4, PyAMPP handles the complex configuration automatically.</p>
                     </div>
                     <div class="feature-card">
-                        <h4>Granular Service Control</h4>
-                        <p>Independent process management for Apache and MySQL. Features including real-time PID
-                            monitoring, port availability checks, and unified stack orchestration.</p>
+                        <h4>Hardened Process Isolation</h4>
+                        <p>Improved execution logic prevents DLL conflicts (like <code>VCRUNTIME140.dll</code> mismatches) by running services in a strictly isolated environment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Smart Reinstallation</h4>
+                        <p>Perform clean updates of binaries while strictly preserving your MySQL data directories, preventing "version soup" and ensuring environment stability.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Intelligent Module Mapping</h4>
+                        <p>Dynamically detects and maps the correct PHP module (e.g., <code>php7_module</code> vs <code>php_module</code>) based on the active version selection.</p>
                     </div>
                     <div class="feature-card">
                         <h4>Intelligent PHP Configuration</h4>
@@ -86,19 +92,9 @@
                             paths.</p>
                     </div>
                     <div class="feature-card">
-                        <h4>Secure MySQL Initialization</h4>
-                        <p>Automates the <code>--initialize-insecure</code> routine for new MySQL data directories,
-                            ensuring immediate accessibility while maintaining local portability.</p>
-                    </div>
-                    <div class="feature-card">
                         <h4>Global PATH Integration</h4>
                         <p>Integrated PowerShell automation to register the portable PHP binary within the Windows
                             System PATH, enabling CLI usage (composer, artisan, etc.) globally.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>phpMyAdmin Orchestration</h4>
-                        <p>Automatic deployment to Apache <code>htdocs</code> with dynamic <code>blowfish_secret</code>
-                            generation and pre-configured local-only access controls.</p>
                     </div>
                     <div class="feature-card">
                         <h4>LAN Exposure Toggle</h4>
@@ -113,19 +109,17 @@
                 </div>
             </section>
 
-            <section id="components">
-                <h2>Managed Components</h2>
-                <p>PyAMPP targets specific, high-performance distributions of standard web components:</p>
-                <ul>
-                    <li><strong>Apache HTTP Server:</strong> VS17 Win64 Binaries from Apache Lounge (configured with
-                        Windows-specific performance optimizations like <code>AcceptFilter none</code>).</li>
-                    <li><strong>MySQL Community Server:</strong> 8.0.x x64 distributions with custom <code>my.ini</code>
-                        templating.</li>
-                    <li><strong>PHP:</strong> Thread Safe 8.3.x distributions, automatically integrated as an Apache
-                        module.</li>
-                    <li><strong>phpMyAdmin:</strong> Latest multi-language releases with automated configuration
-                        mapping.</li>
-                </ul>
+            <section id="presets">
+                <h2>Supported Versions (Presets)</h2>
+                <p>PyAMPP v1.0.2 supports a wide range of verified component versions out of the box:</p>
+                <div class="preset-container">
+                    <ul>
+                        <li><strong>PHP:</strong> 8.4.20 (VS17), 8.3.30, 8.2.30, 8.1.34, 8.0.30, 7.4.33</li>
+                        <li><strong>Apache:</strong> 2.4.66 (VS17), 2.4.63 (VS17)</li>
+                        <li><strong>MySQL:</strong> 8.4.4 (LTS), 8.0.40, 5.7.44</li>
+                        <li><strong>phpMyAdmin:</strong> 5.2.3, 5.2.2, 5.2.1</li>
+                    </ul>
+                </div>
             </section>
 
             <section id="technical">
@@ -137,8 +131,7 @@
                         look.</li>
                     <li><strong>Networking:</strong> Synchronous socket-based port monitoring and automated subnet
                         detection.</li>
-                    <li><strong>Configuration:</strong> JSON-based persistent state management for user preferences and
-                        environment paths.</li>
+                    <li><strong>Architecture:</strong> 64-bit optimized (VS17 Runtimes) with hardened isolation logic.</li>
                     <li><strong>Process Isolation:</strong> Detached process trees to ensure services remain stable
                         independently of the GUI state.</li>
                 </ul>
@@ -173,7 +166,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 PyAMPP Development Team. Built for Windows.</p>
+            <p>&copy; 2026 Romel Brosas. Built for Windows.</p>
         </div>
     </footer>
 </body>
