@@ -47,9 +47,11 @@ PyAMPP v1.0.2 supports a wide range of verified component versions:
 
 ## Visual Interface
 
-![PyAMPP Dashboard](screenshots/Screenshot.png)
+| Dashboard | Settings |
+| :---: | :---: |
+| ![PyAMPP Dashboard](screenshots/Screenshot-1.png) | ![PyAMPP Settings](screenshots/Screenshot-2.png) |
 
-*The centralized dashboard provides real-time monitoring and one-click control over the entire development stack.*
+*The centralized dashboard provides real-time monitoring and one-click control over the entire development stack, while the settings panel allows for granular environment customization.*
 
 ## Technical Specifications
 

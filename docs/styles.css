@@ -178,11 +178,27 @@ code {
     overflow: hidden;
     border: 1px solid var(--border);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--bg-secondary);
 }
 
 .screenshot-container img {
-    width: 100%;
+    width: calc(50% - 0.5rem);
     display: block;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .screenshot-container {
+        flex-direction: column;
+    }
+    
+    .screenshot-container img {
+        width: 100%;
+    }
 }
 
 .feature-grid {
