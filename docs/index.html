@@ -51,6 +51,7 @@
                 <li><a href="#presets">Supported Presets</a></li>
                 <li><a href="#technical">Technical Specifications</a></li>
                 <li><a href="#architecture">System Architecture</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#legal">Legal & Distribution</a></li>
             </ul>
         </aside>
@@ -150,6 +151,26 @@
                     <li><strong>Automation Layer:</strong> PowerShell scripts for system-level integrations and
                         automated environment pathing.</li>
                 </ul>
+            </section>
+
+            <section id="faq">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <h4>Why use PyAMPP instead of a modern Docker-based setup?</h4>
+                    <p>While Docker is extremely powerful, it can feel resource-heavy and consume significant storage, especially when building and maintaining multiple containers. PyAMPP provides a lightweight, portable alternative that is much faster to initialize and easier to manage for standard PHP development without the overhead of virtualization.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Is PyAMPP really portable?</h4>
+                    <p>Yes. Everything—including binaries, databases, and configurations—is stored within the application's root directory. You can move the entire folder to a USB drive or another machine, and it will work without needing to reinstall dependencies.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I add my own custom PHP or MySQL versions?</h4>
+                    <p>Currently, PyAMPP uses verified presets defined in <code>presets.json</code> to ensure compatibility and automated configuration. Manual additions are possible by modifying the presets file, though official support is limited to the versions listed.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Does it require Administrator privileges?</h4>
+                    <p>Admin privileges are generally not required for basic operation, though they may be needed for specific automation tasks like registering PHP to the System PATH or toggling certain network firewall rules.</p>
+                </div>
             </section>
 
             <section id="legal">

@@ -227,6 +227,20 @@ code {
     margin-bottom: 0;
 }
 
+.faq-item {
+    margin-bottom: 2rem;
+}
+
+.faq-item h4 {
+    color: #f0f6fc;
+    margin-bottom: 0.5rem;
+}
+
+.faq-item p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
 footer {
     background-color: var(--bg-secondary);
     border-top: 1px solid var(--border);
