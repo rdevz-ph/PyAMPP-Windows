@@ -81,7 +81,7 @@ For more detailed information, technical guides, and visual overviews, visit our
 While Docker is extremely powerful, it can feel resource-heavy and consume significant storage, especially when building and maintaining multiple containers. PyAMPP provides a lightweight, portable alternative that is much faster to initialize and easier to manage for standard PHP development without the overhead of virtualization.
 
 ### Is PyAMPP really portable?
-Yes. Everything—including binaries, databases, and configurations—is stored within the application's root directory. You can move the entire folder to a USB drive or another machine, and it will work without needing to reinstall dependencies.
+Yes. The application executable is portable; however, dependencies are stored in the chosen installation directory. If you move the application folder, simply update the installation directory settings within the app to ensure everything continues to work seamlessly.
 
 ### Can I add my own custom PHP or MySQL versions?
 Currently, PyAMPP uses verified presets defined in `presets.json` to ensure compatibility and automated configuration. Manual additions are possible by modifying the presets file, though official support is limited to the versions listed.
