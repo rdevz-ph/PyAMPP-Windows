@@ -274,6 +274,42 @@ blockquote {
     font-style: italic;
 }
 
+.warning-box {
+    border-left: 4px solid #d29922;
+    background-color: rgba(187, 128, 9, 0.1);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    color: var(--text-primary);
+    border-radius: 0 6px 6px 0;
+}
+
+.warning-box strong {
+    color: #d29922;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05rem;
+}
+
+.note-box {
+    border-left: 4px solid var(--accent);
+    background-color: rgba(88, 166, 255, 0.1);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    color: var(--text-primary);
+    border-radius: 0 6px 6px 0;
+}
+
+.note-box strong {
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05rem;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 0 1.5rem;

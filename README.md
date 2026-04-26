@@ -15,6 +15,9 @@ PyAMPP is an advanced Windows-based orchestration utility designed to automate t
 
 The latest stable version of PyAMPP can be downloaded from the official [Releases](https://github.com/rdevz-ph/PyAMPP-Windows/releases) page. Choose the latest release and download the standalone executable (`.exe`).
 
+> [!WARNING]
+> This tool is currently under development and may contain bugs or be unstable as it is maintained by a solo developer. If you encounter any issues, please state your current application version and [open an issue](https://github.com/rdevz-ph/PyAMPP-Windows/issues).
+
 ## Core Objectives
 
 1.  **True Portability:** Consolidates all binaries, configuration templates, and data directories into a single root directory, ensuring the environment remains independent of the host system.
