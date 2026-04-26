@@ -11,6 +11,10 @@ PyAMPP is an advanced Windows-based orchestration utility designed to automate t
 > [!NOTE]
 > This software is developed for personal use and internal development purposes. The source code is not available for public distribution or external contribution.
 
+## Download
+
+The latest stable version of PyAMPP can be downloaded from the official [Releases](https://github.com/rdevz-ph/PyAMPP-Windows/releases) page. Choose the latest release and download the standalone executable (`.exe`).
+
 ## Core Objectives
 
 1.  **True Portability:** Consolidates all binaries, configuration templates, and data directories into a single root directory, ensuring the environment remains independent of the host system.
@@ -70,6 +74,20 @@ PyAMPP v1.0.3 supports a wide range of verified component versions. For full tra
 
 For more detailed information, technical guides, and visual overviews, visit our documentation site:
 **[View Detailed Documentation](https://rdevz-ph.github.io/PyAMPP-Windows/)**
+
+## Frequently Asked Questions
+
+### Why use PyAMPP instead of a modern Docker-based setup?
+While Docker is extremely powerful, it can feel resource-heavy and consume significant storage, especially when building and maintaining multiple containers. PyAMPP provides a lightweight, portable alternative that is much faster to initialize and easier to manage for standard PHP development without the overhead of virtualization.
+
+### Is PyAMPP really portable?
+Yes. Everything—including binaries, databases, and configurations—is stored within the application's root directory. You can move the entire folder to a USB drive or another machine, and it will work without needing to reinstall dependencies.
+
+### Can I add my own custom PHP or MySQL versions?
+Currently, PyAMPP uses verified presets defined in `presets.json` to ensure compatibility and automated configuration. Manual additions are possible by modifying the presets file, though official support is limited to the versions listed.
+
+### Does it require Administrator privileges?
+Admin privileges are generally not required for basic operation, though they may be needed for specific automation tasks like registering PHP to the System PATH or toggling certain network firewall rules.
 
 ## Legal
 
