@@ -42,7 +42,7 @@ The latest stable version of PyAMPP can be downloaded from the official [Release
 
 ## Supported Versions (Presets)
 
-PyAMPP v1.0.3 supports a wide range of verified component versions. For full transparency, you can verify all official binary download URLs in the [presets.json](presets.json) file:
+PyAMPP v1.0.4 supports a wide range of verified component versions. For full transparency, you can verify all official binary download URLs in the [presets.json](presets.json) file:
 
 - **PHP:** 8.4.20 (VS17), 8.3.30, 8.2.30, 8.1.34, 8.0.30, and 7.4.33 (Archive).
 - **Apache:** 2.4.66 (VS17).
