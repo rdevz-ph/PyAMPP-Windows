@@ -1,5 +1,10 @@
 {
+    "latest_release": {
+        "version": "v1.0.5",
+        "url": "https://github.com/rdevz-ph/PyAMPP-Windows/releases/tag/v1.0.5"
+    },
     "PHP": {
+        "8.5.5": "https://windows.php.net/downloads/releases/php-8.5.5-Win32-vs17-x64.zip",
         "8.4.20": "https://windows.php.net/downloads/releases/php-8.4.20-Win32-vs17-x64.zip",
         "8.3.30": "https://windows.php.net/downloads/releases/php-8.3.30-Win32-vs16-x64.zip",
         "8.2.30": "https://windows.php.net/downloads/releases/php-8.2.30-Win32-vs16-x64.zip",
