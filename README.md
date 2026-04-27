@@ -40,14 +40,14 @@ The latest stable version of PyAMPP can be downloaded from the official [Release
 - **Intelligent Module Mapping:** Dynamically detects the correct PHP module name (e.g., `php7_module` vs `php_module`) based on the active version.
 
 ### Lifecycle & Version Management
-- **Version Preset Selection:** Choose specific versions for each component from a curated list of presets (from PHP 7.4 to 8.4).
+- **Version Preset Selection:** Choose specific versions for each component from a curated list of presets (from PHP 7.4 to 8.5).
 - **Smart Reinstallation & Cleanup:** Performs a clean sweep of old binaries while strictly preserving MySQL data when updating or switching versions.
 
 ## Supported Versions (Presets)
 
-PyAMPP v1.0.4 supports a wide range of verified component versions. For full transparency, you can verify all official binary download URLs in the [presets.json](presets.json) file:
+PyAMPP v1.0.5 supports a wide range of verified component versions. For full transparency, you can verify all official binary download URLs in the [presets.json](presets.json) file:
 
-- **PHP:** 8.4.20 (VS17), 8.3.30, 8.2.30, 8.1.34, 8.0.30, and 7.4.33 (Archive).
+- **PHP:** 8.5.5 (VS17), 8.4.20, 8.3.30, 8.2.30, 8.1.34, 8.0.30, and 7.4.33 (Archive).
 - **Apache:** 2.4.66 (VS17).
 - **MySQL:** 8.4.4 (LTS), 8.0.40, 5.7.44.
 - **phpMyAdmin:** 5.2.3, 5.2.2, 5.2.1.

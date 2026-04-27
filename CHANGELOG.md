@@ -2,6 +2,18 @@
 
 All notable changes to PyAMPP will be documented in this file.
 
+## [1.0.5] - 2026-04-27
+### Added
+* **PHP 8.5.5 Support**: Added support for the latest PHP 8.5.5 presets in the Setup Wizard and configuration engine.
+* **Application Update Notifications**: Implemented an in-app notification system that detects newer versions of PyAMPP on GitHub and provides a direct link to the latest release page.
+* **Manual Update Check Button**: Added a "Check for Updates" button to the application footer, allowing users to manually refresh presets and check for software updates at any time.
+* **Metadata Support in Presets**: The preset system now supports optional metadata (like latest version info) without impacting component lists or breaking compatibility with older application versions.
+
+### Changed
+* **Improved Preset Merging Logic**: Refactored the merging engine to ensure that newly fetched versions from the server are prioritized and appear at the top of selection menus.
+* **Consistent UI Arrangement**: Standardized the category order (PHP, Apache, MySQL, phpMyAdmin) in all configuration menus to ensure a consistent user experience.
+* **Centralized Preset Management**: Consolidated preset update logic into a unified helper function to improve maintainability and ensure UI reactivity.
+
 ## [1.0.4] - 2026-04-26
 ### Added
 * **Automated Preset Synchronization**: The application now automatically checks for and fetches the latest PHP, Apache, and MySQL version presets from GitHub on startup.
