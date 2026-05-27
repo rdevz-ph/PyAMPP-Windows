@@ -2,6 +2,18 @@
 
 All notable changes to PyAMPP will be documented in this file.
 
+## [1.0.6] - 2026-05-27
+### Added
+* **Premium Card-Based Dashboard**: Revamped the row-based environment control panel into a high-end, visual control center with unified Slate 900 backgrounds and custom card frames.
+* **Process-Level Resource Metrics**: Real-time tracking of PID, CPU utilization %, and RAM memory consumption (MB) dynamically aggregated for both Apache and MySQL servers.
+* **System-Wide Health Monitor**: Dashboard cards displaying real-time System CPU, System RAM, and drive Disk Space usage with sleek progress-indicator bars.
+* **Config Shortcuts**: One-click edit buttons inside the cards to instantly open `httpd.conf`, `my.ini`, or `php.ini` in the default text editor.
+* **Dedicated Logs Tab**: Created a dedicated tab for logs, freeing up 250px of vertical space and enabling fully responsive dashboard auto-scaling in minimized/compact windows.
+
+### Changed
+* **Preset Overwrite Logic**: Remote preset downloads now completely overwrite the local cache instead of merging, ensuring removed or dead links are cleanly purged from selection dropdowns.
+* **Latest Default Presets**: Upgraded default configuration fallback URLs to point to working PHP 8.5.6 and MySQL 8.4.4 LTS releases, resolving old dead URLs.
+
 ## [1.0.5] - 2026-04-27
 ### Added
 * **PHP 8.5.5 Support**: Added support for the latest PHP 8.5.5 presets in the Setup Wizard and configuration engine.
