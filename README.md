@@ -58,7 +58,10 @@ PyAMPP v1.0.7 supports a wide range of verified component versions. For full tra
 | :---: | :---: |
 | ![PyAMPP Dashboard](screenshots/Screenshot-1.png) | ![PyAMPP Diagnostics](screenshots/Screenshot-2.png) |
 
-*The centralized dashboard provides real-time monitoring and one-click control over the entire development stack, while the settings panel allows for granular environment customization.*
+*The centralized dashboard provides real-time monitoring and one-click control over the entire development stack, while the diagnostics panel performs health checks on service processes, validates configuration templates, monitors port availability, and verifies SSL and environment path status.*
+
+> [!NOTE]
+> An "Untrusted" status for the local Certificate Authority (CA) is completely normal in a development environment, as PyAMPP generates self-signed certificates for local SSL encryption.
 
 ## Technical Specifications
 
