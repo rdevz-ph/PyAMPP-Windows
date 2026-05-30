@@ -2,6 +2,12 @@
 
 All notable changes to PyAMPP will be documented in this file.
 
+## [1.0.7] - 2026-05-30
+### Added
+* **Diagnostics & SSL Checker Tab**: Integrated a real-time HTTP reachability/latency scanner, MySQL database TCP tests, PHP CLI execution checks, and a detailed SSL certificate inspector.
+* **One-Click SSL Auto-Fixer & Regenerator**: Automatically generates local development self-signed keys/certificates, registers virtual host SSL directives in Apache on port 443, and supports manual one-click regeneration, active SSL configuration file editing, and direct certificate directory exploration.
+* **Htdocs Shortcut Button**: Added a dedicated `Htdocs 📁` button in the Apache Web Server control card footer, allowing one-click access to the Apache server root directory.
+
 ## [1.0.6] - 2026-05-27
 ### Added
 * **Premium Card-Based Dashboard**: Revamped the row-based environment control panel into a high-end, visual control center with unified Slate 900 backgrounds and custom card frames.

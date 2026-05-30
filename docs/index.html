@@ -38,7 +38,7 @@
             </div>
             <div class="screenshot-container">
                 <img src="images/Screenshot-1.png" alt="PyAMPP Dashboard">
-                <img src="images/Screenshot-2.png" alt="PyAMPP Settings">
+                <img src="images/Screenshot-2.png" alt="PyAMPP Diagnostic">
             </div>
         </div>
     </div>
@@ -71,12 +71,17 @@
 
             <section id="download">
                 <h2>Download</h2>
-                <p>The latest stable version of PyAMPP is available as a standalone executable. You can download it directly from our official releases page on GitHub.</p>
+                <p>The latest stable version of PyAMPP is available as a standalone executable. You can download it
+                    directly from our official releases page on GitHub.</p>
                 <div class="warning-box">
                     <strong>Warning</strong>
-                    This tool is currently under development and may contain bugs or be unstable as it is maintained by a solo developer. If you encounter any issues, please state your current application version and <a href="https://github.com/rdevz-ph/PyAMPP-Windows/issues" style="color: var(--accent);">open an issue</a>.
+                    This tool is currently under development and may contain bugs or be unstable as it is maintained by
+                    a solo developer. If you encounter any issues, please state your current application version and <a
+                        href="https://github.com/rdevz-ph/PyAMPP-Windows/issues" style="color: var(--accent);">open an
+                        issue</a>.
                 </div>
-                <a href="https://github.com/rdevz-ph/PyAMPP-Windows/releases" class="download-button">View All Releases</a>
+                <a href="https://github.com/rdevz-ph/PyAMPP-Windows/releases" class="download-button">View All
+                    Releases</a>
             </section>
 
             <section id="features">
@@ -84,19 +89,24 @@
                 <div class="feature-grid">
                     <div class="feature-card">
                         <h4>Version Preset Selection</h4>
-                        <p>Choose from a curated list of verified component versions. From legacy PHP 7.4 to the latest 8.5, PyAMPP handles the complex configuration automatically.</p>
+                        <p>Choose from a curated list of verified component versions. From legacy PHP 7.4 to the latest
+                            8.5, PyAMPP handles the complex configuration automatically.</p>
                     </div>
                     <div class="feature-card">
                         <h4>Hardened Process Isolation</h4>
-                        <p>Improved execution logic prevents DLL conflicts (like <code>VCRUNTIME140.dll</code> mismatches) by running services in a strictly isolated environment.</p>
+                        <p>Improved execution logic prevents DLL conflicts (like <code>VCRUNTIME140.dll</code>
+                            mismatches) by running services in a strictly isolated environment.</p>
                     </div>
                     <div class="feature-card">
                         <h4>Smart Reinstallation</h4>
-                        <p>Perform clean updates of binaries while strictly preserving your MySQL data directories, preventing "version soup" and ensuring environment stability.</p>
+                        <p>Perform clean updates of binaries while strictly preserving your MySQL data directories,
+                            preventing "version soup" and ensuring environment stability.</p>
                     </div>
                     <div class="feature-card">
                         <h4>Intelligent Module Mapping</h4>
-                        <p>Dynamically detects and maps the correct PHP module (e.g., <code>php7_module</code> vs <code>php_module</code>) based on the active version selection.</p>
+                        <p>Dynamically detects and maps the correct PHP module (e.g., <code>php7_module</code> vs
+                            <code>php_module</code>) based on the active version selection.
+                        </p>
                     </div>
                     <div class="feature-card">
                         <h4>Intelligent PHP Configuration</h4>
@@ -124,10 +134,13 @@
 
             <section id="presets">
                 <h2>Supported Versions (Presets)</h2>
-                <p>PyAMPP v1.0.6 supports a wide range of verified component versions out of the box. For transparency, all official binary download URLs are documented in the <code>presets.json</code> file within the repository.</p>
+                <p>PyAMPP v1.0.7 supports a wide range of verified component versions out of the box. For transparency,
+                    all official binary download URLs are documented in the <code>presets.json</code> file within the
+                    repository.</p>
                 <div class="preset-container">
                     <ul>
-                        <li><strong>PHP:</strong> 8.5.6 (VS17), 8.4.21, 8.3.31, 8.2.31, 8.1.34, 8.0.30 (Archive), 7.4.33 (Archive)</li>
+                        <li><strong>PHP:</strong> 8.5.6 (VS17), 8.4.21, 8.3.31, 8.2.31, 8.1.34, 8.0.30 (Archive), 7.4.33
+                            (Archive)</li>
                         <li><strong>Apache:</strong> 2.4.66 (VS17)</li>
                         <li><strong>MySQL:</strong> 8.4.4 (LTS), 8.0.40, 5.7.44</li>
                         <li><strong>phpMyAdmin:</strong> 5.2.3, 5.2.2, 5.2.1</li>
@@ -144,7 +157,8 @@
                         look.</li>
                     <li><strong>Networking:</strong> Synchronous socket-based port monitoring and automated subnet
                         detection.</li>
-                    <li><strong>Architecture:</strong> 64-bit optimized (VS17 Runtimes) with hardened isolation logic.</li>
+                    <li><strong>Architecture:</strong> 64-bit optimized (VS17 Runtimes) with hardened isolation logic.
+                    </li>
                     <li><strong>Process Isolation:</strong> Detached process trees to ensure services remain stable
                         independently of the GUI state.</li>
                 </ul>
@@ -156,7 +170,8 @@
                 <ul>
                     <li><strong>Core Layer:</strong> Encapsulates binary management, configuration templating (Apache
                         <code>httpd.conf</code>, MySQL <code>my.ini</code>, PHP <code>php.ini</code>), and low-level
-                        process control.</li>
+                        process control.
+                    </li>
                     <li><strong>GUI Layer:</strong> Modular interface components (Dashboard, Setup Wizard, Settings,
                         Global PHP Setup, and Log Aggregator).</li>
                     <li><strong>Automation Layer:</strong> PowerShell scripts for system-level integrations and
@@ -168,19 +183,28 @@
                 <h2>Frequently Asked Questions</h2>
                 <div class="faq-item">
                     <h4>Why use PyAMPP instead of a modern Docker-based setup?</h4>
-                    <p>While Docker is extremely powerful, it can feel resource-heavy and consume significant storage, especially when building and maintaining multiple containers. PyAMPP provides a lightweight, portable alternative that is much faster to initialize and easier to manage for standard PHP development without the overhead of virtualization.</p>
+                    <p>While Docker is extremely powerful, it can feel resource-heavy and consume significant storage,
+                        especially when building and maintaining multiple containers. PyAMPP provides a lightweight,
+                        portable alternative that is much faster to initialize and easier to manage for standard PHP
+                        development without the overhead of virtualization.</p>
                 </div>
                 <div class="faq-item">
                     <h4>Is PyAMPP really portable?</h4>
-                    <p>Yes. The application executable is portable; however, dependencies are stored in the chosen installation directory. If you move the application folder, simply update the installation directory settings within the app to ensure everything continues to work seamlessly.</p>
+                    <p>Yes. The application executable is portable; however, dependencies are stored in the chosen
+                        installation directory. If you move the application folder, simply update the installation
+                        directory settings within the app to ensure everything continues to work seamlessly.</p>
                 </div>
                 <div class="faq-item">
                     <h4>Can I add my own custom PHP or MySQL versions?</h4>
-                    <p>Currently, PyAMPP uses verified presets defined in <code>presets.json</code> to ensure compatibility and automated configuration. Manual additions are possible by modifying the presets file, though official support is limited to the versions listed.</p>
+                    <p>Currently, PyAMPP uses verified presets defined in <code>presets.json</code> to ensure
+                        compatibility and automated configuration. Manual additions are possible by modifying the
+                        presets file, though official support is limited to the versions listed.</p>
                 </div>
                 <div class="faq-item">
                     <h4>Does it require Administrator privileges?</h4>
-                    <p>Admin privileges are generally not required for basic operation, though they may be needed for specific automation tasks like registering PHP to the System PATH or toggling certain network firewall rules.</p>
+                    <p>Admin privileges are generally not required for basic operation, though they may be needed for
+                        specific automation tasks like registering PHP to the System PATH or toggling certain network
+                        firewall rules.</p>
                 </div>
             </section>
 

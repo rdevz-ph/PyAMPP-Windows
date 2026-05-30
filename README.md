@@ -45,7 +45,7 @@ The latest stable version of PyAMPP can be downloaded from the official [Release
 
 ## Supported Versions (Presets)
 
-PyAMPP v1.0.6 supports a wide range of verified component versions. For full transparency, you can verify all official binary download URLs in the [presets.json](presets.json) file:
+PyAMPP v1.0.7 supports a wide range of verified component versions. For full transparency, you can verify all official binary download URLs in the [presets.json](presets.json) file:
 
 - **PHP:** 8.5.6 (VS17), 8.4.21, 8.3.31, 8.2.31, 8.1.34, 8.0.30 (Archive), and 7.4.33 (Archive).
 - **Apache:** 2.4.66 (VS17).
@@ -54,9 +54,9 @@ PyAMPP v1.0.6 supports a wide range of verified component versions. For full tra
 
 ## Visual Interface
 
-| Dashboard | Settings |
+| Dashboard | Diagnostics |
 | :---: | :---: |
-| ![PyAMPP Dashboard](screenshots/Screenshot-1.png) | ![PyAMPP Settings](screenshots/Screenshot-2.png) |
+| ![PyAMPP Dashboard](screenshots/Screenshot-1.png) | ![PyAMPP Diagnostics](screenshots/Screenshot-2.png) |
 
 *The centralized dashboard provides real-time monitoring and one-click control over the entire development stack, while the settings panel allows for granular environment customization.*
 
