@@ -2,6 +2,14 @@
 
 All notable changes to PyAMPP will be documented in this file.
 
+## [1.0.8] - 2026-06-12
+### Added
+* **Dynamic Theme Toggle**: Introduced a Light/Dark Mode switch in the application footer for instant theme switching.
+* **Auto-Run on Startup**: Added a setting to automatically launch PyAMPP when Windows starts via registry integration.
+* **Unified UI Theming**: Fixed unstyled tab backgrounds (Logs, PHP CLI, Global PHP, Settings) to seamlessly match the custom premium ocean-blue dashboard cards.
+* **Readable Light Mode Tabs**: Fixed tab header text color contrast issues when using the Light Mode theme.
+* **Automated SSL Setup**: The Setup Wizard and Updater now automatically execute the SSL Auto-Fix routine upon Apache extraction, generating self-signed certificates and enabling HTTPS to prevent first-time startup errors.
+
 ## [1.0.7] - 2026-05-30
 ### Added
 * **Diagnostics & SSL Checker Tab**: Integrated a real-time HTTP reachability/latency scanner, MySQL database TCP tests, PHP CLI execution checks, and a detailed SSL certificate inspector.
