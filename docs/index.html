@@ -36,9 +36,28 @@
                 <img src="https://my-release-badge-api.netlify.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=name&color=blue"
                     alt="Release">
             </div>
-            <div class="screenshot-container">
-                <img src="images/Screenshot-1.png" alt="PyAMPP Dashboard">
-                <img src="images/Screenshot-2.png" alt="PyAMPP Diagnostic">
+            <div class="slideshow-container" onmouseenter="pauseSlideshow()" onmouseleave="startSlideshow()">
+                <div class="slide fade">
+                    <img src="images/Screenshot-1.png" alt="PyAMPP Dashboard">
+                    <div class="slide-caption">Dashboard</div>
+                </div>
+                <div class="slide fade">
+                    <img src="images/Screenshot-2.png" alt="PyAMPP Diagnostics">
+                    <div class="slide-caption">Diagnostics</div>
+                </div>
+                <div class="slide fade">
+                    <img src="images/Screenshot-3.png" alt="PyAMPP PHP Extensions">
+                    <div class="slide-caption">PHP Extensions</div>
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <div class="slides-dots">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -134,7 +153,7 @@
 
             <section id="presets">
                 <h2>Supported Versions (Presets)</h2>
-                <p>PyAMPP v1.0.8 supports a wide range of verified component versions out of the box. For transparency,
+                <p>PyAMPP v1.0.9 supports a wide range of verified component versions out of the box. For transparency,
                     all official binary download URLs are documented in the <code>presets.json</code> file within the
                     repository.</p>
                 <div class="preset-container">
@@ -226,6 +245,56 @@
             <p>&copy; 2026 Romel Brosas. Built for Windows.</p>
         </div>
     </footer>
+    <script>
+        let slideIndex = 1;
+        let slideshowInterval = null;
+
+        showSlides(slideIndex);
+        startSlideshow();
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            if (slides[slideIndex - 1]) {
+                slides[slideIndex - 1].style.display = "block";
+            }
+            if (dots[slideIndex - 1]) {
+                dots[slideIndex - 1].className += " active";
+            }
+        }
+
+        function startSlideshow() {
+            if (!slideshowInterval) {
+                slideshowInterval = setInterval(() => {
+                    plusSlides(1);
+                }, 4000);
+            }
+        }
+
+        function pauseSlideshow() {
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+                slideshowInterval = null;
+            }
+        }
+    </script>
 </body>
 
 </html>

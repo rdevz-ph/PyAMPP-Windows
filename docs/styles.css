@@ -172,32 +172,131 @@ code {
     font-size: 0.9rem;
 }
 
-.screenshot-container {
-    margin: 2rem 0;
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: 2rem auto;
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid var(--border);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
     background-color: var(--bg-secondary);
 }
 
-.screenshot-container img {
-    width: calc(50% - 0.5rem);
+.slide {
+    display: none;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
     display: block;
+}
+
+.slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(13, 17, 23, 0.95));
+    color: var(--text-primary);
+    padding: 3rem 1.5rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background-color: rgba(22, 27, 34, 0.6);
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    opacity: 0;
+    z-index: 5;
+}
+
+.prev {
+    left: 0.5rem;
+}
+
+.next {
+    right: 0.5rem;
+}
+
+.slideshow-container:hover .prev {
+    opacity: 1;
+    left: 1.5rem;
+}
+
+.slideshow-container:hover .next {
+    opacity: 1;
+    right: 1.5rem;
+}
+
+.prev:hover, .next:hover {
+    background-color: var(--accent);
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slides-dots {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.dot {
+    cursor: pointer;
+    height: 8px;
+    width: 8px;
+    background-color: rgba(201, 209, 217, 0.4);
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dot:hover, .dot.active {
+    background-color: var(--accent);
+    width: 24px;
     border-radius: 4px;
-    object-fit: cover;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 0.5s;
+}
+
+@keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
 }
 
 @media (max-width: 768px) {
-    .screenshot-container {
-        flex-direction: column;
+    .prev {
+        opacity: 1;
+        left: 1rem;
     }
     
-    .screenshot-container img {
-        width: 100%;
+    .next {
+        opacity: 1;
+        right: 1rem;
     }
 }
 

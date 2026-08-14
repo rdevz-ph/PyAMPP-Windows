@@ -2,6 +2,16 @@
 
 All notable changes to PyAMPP will be documented in this file.
 
+## [1.0.9] - 2026-08-14
+### Added
+* **PHP Extensions Manager Tab**: Added a dedicated "PHP Extensions" tab to the PyAMPP GUI. Users can search and toggle PHP extensions, editing `php.ini` in-place. Saving changes will automatically restart the Apache server (if running) in a background thread to apply settings.
+* **Manual Update Check Feedback**: Clicking "Check for Updates" in the footer now shows clear, user-friendly dialogs if the app is already up to date, if parsing fails, or if the updater service is offline, while startup checks remain silent.
+* **Custom Dialog Progress Loader**: Introduced a modal `ProgressDialog` window for component downloading/extracting on both the Dashboard and Settings tab, preventing progress indicators from being cut off or hidden in smaller/non-maximized views.
+
+### Fixed
+* **Fixed Service CPU Usage**: Resolved an issue where service CPU usage for Apache and MySQL always showed `0.0%` by replacing the stateless `proc.cpu_percent()` calls with a stateful calculation of user+system CPU time delta divided by wall-clock time delta, normalized by the processor core count.
+* **Unified Custom Dialog Icons**: Set all custom top-level dialogs (such as the Exit Confirmation and Setup Wizard windows) to display the application's native icon (`app.ico`) instead of the default Tkinter feather icon.
+
 ## [1.0.8] - 2026-06-12
 ### Added
 * **Dynamic Theme Toggle**: Introduced a Light/Dark Mode switch in the application footer for instant theme switching.
