@@ -8,8 +8,6 @@
 
 PyAMPP is an advanced Windows-based orchestration utility designed to automate the deployment and management of a local web development environment. It provides a centralized graphical interface for the integrated management of Apache HTTP Server, MySQL Database, PHP, and phpMyAdmin.
 
-> [!NOTE]
-> This software is developed for personal use and internal development purposes. The source code is not available for public distribution or external contribution.
 
 ## Download
 
@@ -76,6 +74,35 @@ PyAMPP v1.0.9 supports a wide range of verified component versions. For full tra
 - **GUI Layer:** Modular dashboard, setup wizard, log aggregator, and global settings.
 - **Automation Layer:** PowerShell integration for system-wide environment pathing.
 
+## Building from Source
+
+### Prerequisites
+- **Python 3.10+** (64-bit recommended)
+- **Git**
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/rdevz-ph/PyAMPP-Windows.git
+cd PyAMPP-Windows
+```
+
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Run Locally (Development)
+```bash
+python main.py
+```
+
+### 4. Build Standalone Executable
+PyAMPP includes an automated build script configured with PyInstaller to package CustomTkinter themes, icons, and modules into a single portable executable:
+```bash
+python build.py
+```
+The compiled executable will be created in the `dist/` folder (e.g., `dist/PyAMPP_v1.0.9.exe`).
+
 ## Documentation
 
 For more detailed information, technical guides, and visual overviews, visit our documentation site:
@@ -95,10 +122,9 @@ Currently, PyAMPP uses verified presets defined in `presets.json` to ensure comp
 ### Does it require Administrator privileges?
 Admin privileges are generally not required for basic operation, though they may be needed for specific automation tasks like registering PHP to the System PATH or toggling certain network firewall rules.
 
-## Legal
-
-Copyright (c) 2026 Romel Brosas. All Rights Reserved.
-Provided under a proprietary license. See the [LICENSE](LICENSE) file for details.
+## License
+ 
+This project is open-source software licensed under the [MIT License](LICENSE).
 
 ## Disclaimer
 
