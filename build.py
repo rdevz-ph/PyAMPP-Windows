@@ -1,4 +1,5 @@
 import os
+import sys
 import subprocess
 import shutil
 import customtkinter
@@ -26,7 +27,7 @@ def build():
 
     # PyInstaller command
     cmd = [
-        "py", "-m", "PyInstaller",
+        sys.executable, "-m", "PyInstaller",
         "--noconsole",
         "--onefile",
         "--clean", # Always clean cache

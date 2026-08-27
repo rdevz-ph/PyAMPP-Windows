@@ -1,8 +1,10 @@
 # PyAMPP: Portable Web Development Stack Manager
 
-[![Downloads](https://my-release-badge-api.netlify.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=downloads&color=blue)](https://github.com/rdevz-ph/PyAMPP-Windows/releases)
-[![Version](https://my-release-badge-api.netlify.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=version&color=brightgreen)](https://github.com/rdevz-ph/PyAMPP-Windows/releases/latest)
-[![Release](https://my-release-badge-api.netlify.app/api/badge?owner=rdevz-ph&repo=PyAMPP-Windows&mode=name&color=blue)](https://github.com/rdevz-ph/PyAMPP-Windows/releases/latest)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![GUI](https://img.shields.io/badge/GUI-CustomTkinter-1f538d)
+![License](https://img.shields.io/badge/License-MIT-4f46e5)
+![Version](https://img.shields.io/github/v/release/rdevz-ph/PyAMPP-Windows?color=f59e0b&label=version)
 
 ## Project Overview
 
