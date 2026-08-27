@@ -30,7 +30,7 @@ def get_appdata_dir():
 BASE_DIR = get_base_dir()
 APPDATA_DIR = get_appdata_dir()
 DATA_DIR = BASE_DIR / "data"
-VERSION = "v1.0.9"
+VERSION = "v1.1.0"
 
 # Internal resource directory (where .ps1 and other bundled files live)
 if getattr(sys, "frozen", False):

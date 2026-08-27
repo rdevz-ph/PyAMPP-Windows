@@ -1,10 +1,15 @@
-# PyAMPP: Portable Web Development Stack Manager
+<div align="center">
+  <img src="docs/images/pyampp.png" alt="PyAMPP Logo" width="128" />
 
-![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![GUI](https://img.shields.io/badge/GUI-CustomTkinter-1f538d)
-![License](https://img.shields.io/badge/License-MIT-4f46e5)
-![Version](https://img.shields.io/github/v/release/rdevz-ph/PyAMPP-Windows?color=f59e0b&label=version)
+  # PyAMPP
+  <p><strong>Portable Web Development Stack Manager for Windows</strong></p>
+
+  ![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)
+  ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+  ![GUI](https://img.shields.io/badge/GUI-CustomTkinter-1f538d)
+  ![License](https://img.shields.io/badge/License-MIT-4f46e5)
+  ![Version](https://img.shields.io/github/v/release/rdevz-ph/PyAMPP-Windows?color=f59e0b&label=version)
+</div>
 
 ## Project Overview
 

@@ -1,12 +1,11 @@
 # Release Description
 PyAMPP is a standalone Windows executable for automating the deployment and management of a portable Apache, MySQL, and PHP development stack.
 
-## What's New in v1.0.9
-* **PHP Extensions Manager Tab**: Added a dedicated "PHP Extensions" tab to the PyAMPP GUI. Users can search and toggle PHP extensions, editing `php.ini` in-place. Saving changes will automatically restart the Apache server (if running) in a background thread to apply settings.
-* **Fixed Service CPU Usage**: Resolved an issue where service CPU usage for Apache and MySQL always showed `0.0%` by replacing the stateless `proc.cpu_percent()` calls with a stateful calculation of user+system CPU time delta divided by wall-clock time delta, normalized by the processor core count.
-* **Manual Update Check Feedback**: Clicking "Check for Updates" in the footer now shows clear, user-friendly dialogs if the app is already up to date, if parsing fails, or if the updater service is offline, while startup checks remain silent.
-* **Custom Dialog Progress Loader**: Introduced a modal `ProgressDialog` window for component downloading/extracting on both the Dashboard and Settings tab, preventing progress indicators from being cut off or hidden in smaller/non-maximized views.
-* **Unified Custom Dialog Icons**: Set all custom top-level dialogs (such as the Exit Confirmation and Setup Wizard windows) to display the application's native icon (`app.ico`) instead of the default Tkinter feather icon.
+## What's New in v1.1.0
+* **Modern High-DPI App Icon**: Designed a sleek, minimalist 2-color application icon with full multi-resolution support (`16x16` up to `256x256` HD) for Windows taskbar and desktop shortcuts.
+* **Automated CI/CD Release Pipeline**: Added GitHub Actions workflow (`release.yml`) for automated building, artifact archiving, and GitHub Release publishing on Windows runners.
+* **Optimized Executable Size**: Streamlined PyInstaller build configuration in `build.py` to exclude unused heavy libraries, reducing the standalone executable size from ~30 MB down to ~17 MB.
+* **Enhanced Documentation**: Updated project badges to modern shields.io specifications and improved layout in documentation.
 
 > [!TIP]
 > **Full Version History**: For a detailed list of all technical changes and fixes, please refer to the [CHANGELOG.md](https://github.com/rdevz-ph/PyAMPP-Windows/blob/main/CHANGELOG.md).

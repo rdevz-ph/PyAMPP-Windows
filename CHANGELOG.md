@@ -2,6 +2,15 @@
 
 All notable changes to PyAMPP will be documented in this file.
 
+## [1.1.0] - 2026-08-28
+### Added
+* **Modern High-DPI App Icon**: Designed a clean, minimalist 2-color application icon with full multi-resolution support (16x16 up to 256x256 HD).
+* **Automated CI/CD Release Pipeline**: Added GitHub Actions workflow (`release.yml`) for automated building, artifact archiving, and GitHub Release publishing on Windows runners.
+
+### Changed
+* **Optimized Executable Size**: Streamlined PyInstaller build configuration in `build.py` to exclude unused heavy libraries, dropping executable size from ~30 MB to ~17 MB.
+* **Enhanced Documentation**: Updated project badges to modern shields.io specifications and improved layout in documentation.
+
 ## [1.0.9] - 2026-08-14
 ### Added
 * **PHP Extensions Manager Tab**: Added a dedicated "PHP Extensions" tab to the PyAMPP GUI. Users can search and toggle PHP extensions, editing `php.ini` in-place. Saving changes will automatically restart the Apache server (if running) in a background thread to apply settings.

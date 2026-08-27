@@ -45,8 +45,14 @@ def build():
         "--exclude-module", "vcruntime140",
         "--exclude-module", "vcruntime140_1",
         "--exclude-module", "msvcp140",
-        # Explicitly exclude internal testing tools
+        # Explicitly exclude internal testing tools and heavy optional libraries
         "--exclude-module", "tester_server",
+        "--exclude-module", "numpy",
+        "--exclude-module", "matplotlib",
+        "--exclude-module", "scipy",
+        "--exclude-module", "pandas",
+        "--exclude-module", "cryptography",
+        "--exclude-module", "bcrypt",
         "--version-file=version.txt",
         main_script
     ]
