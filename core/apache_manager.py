@@ -48,6 +48,20 @@ class ApacheManager(ServerManager):
             server_root = str(self.install_dir.absolute()).replace("\\", "/")
             port = config_manager.get("apache_port")
             
+            # Document root (htdocs) configuration
+            htdocs_dir_val = config_manager.get("htdocs_dir")
+            if not htdocs_dir_val:
+                legacy_htdocs = self.install_dir / "htdocs"
+                if legacy_htdocs.exists():
+                    htdocs_dir = legacy_htdocs
+                else:
+                    htdocs_dir = Path(config_manager.get("install_dir")).parent / "htdocs"
+            else:
+                htdocs_dir = Path(htdocs_dir_val)
+            
+            htdocs_dir.mkdir(parents=True, exist_ok=True)
+            htdocs_root = str(htdocs_dir.absolute()).replace("\\", "/")
+            
             # PHP Integration
             php_dir = Path(config_manager.get("install_dir")) / "php"
             php_module_path = None
@@ -77,6 +91,7 @@ class ApacheManager(ServerManager):
                 "acceptfilter", 
                 "enablesendfile", 
                 "enablemmap", 
+                "alias /phpmyadmin",
                 "phpmyadmin access control",
                 "# ssl support",
                 "loadmodule ssl_module",
@@ -119,10 +134,10 @@ class ApacheManager(ServerManager):
                 elif line.startswith('ServerRoot "'):
                     new_lines.append(f'ServerRoot "{server_root}"\n')
                 elif line.startswith('DocumentRoot "'):
-                    new_lines.append(f'DocumentRoot "{server_root}/htdocs"\n')
+                    new_lines.append(f'DocumentRoot "{htdocs_root}"\n')
                 elif line.startswith('<Directory "'):
-                    if "Apache24-64" in line or "htdocs" in line:
-                        new_lines.append(f'<Directory "{server_root}/htdocs">\n')
+                    if "cgi-bin" not in line and line.strip() != '<Directory "/">' and line.strip() != '<Directory "/cgi-bin">':
+                        new_lines.append(f'<Directory "{htdocs_root}">\n')
                     else:
                         new_lines.append(line)
                 elif line.startswith("Listen "):
@@ -163,9 +178,15 @@ class ApacheManager(ServerManager):
                         if "index.php" not in line:
                             new_lines[i] = line.replace("DirectoryIndex ", "DirectoryIndex index.php ")
 
-            # Add phpMyAdmin LAN access configuration
+            # Add phpMyAdmin LAN access configuration & Alias
+            pma_dir = self.install_dir / "htdocs" / "phpmyadmin"
+            if not pma_dir.exists() and (htdocs_dir / "phpmyadmin").exists():
+                pma_dir = htdocs_dir / "phpmyadmin"
+            pma_path = str(pma_dir.absolute()).replace("\\", "/")
+
             new_lines.append(f'\n# phpMyAdmin Access Control\n')
-            new_lines.append(f'<Directory "{server_root}/htdocs/phpmyadmin">\n')
+            new_lines.append(f'Alias /phpmyadmin "{pma_path}"\n')
+            new_lines.append(f'<Directory "{pma_path}">\n')
             new_lines.append(f'    Options Indexes FollowSymLinks MultiViews\n')
             new_lines.append(f'    AllowOverride all\n')
             new_lines.append(f'    <RequireAny>\n')
@@ -189,7 +210,7 @@ class ApacheManager(ServerManager):
                 new_lines.append(f'LoadModule socache_shmcb_module modules/mod_socache_shmcb.so\n')
                 new_lines.append(f'Listen 443\n')
                 new_lines.append(f'<VirtualHost _default_:443>\n')
-                new_lines.append(f'    DocumentRoot "{server_root}/htdocs"\n')
+                new_lines.append(f'    DocumentRoot "{htdocs_root}"\n')
                 new_lines.append(f'    ServerName localhost:443\n')
                 new_lines.append(f'    SSLEngine on\n')
                 new_lines.append(f'    SSLCertificateFile "{server_root}/conf/ssl.crt/server.crt"\n')

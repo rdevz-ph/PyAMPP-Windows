@@ -96,34 +96,41 @@ port={port}
 
     def sync_pma_port(self, port):
         """Updates phpMyAdmin's config.inc.php with the current MySQL port."""
-        pma_config = Path(config_manager.get("install_dir")) / "apache" / "Apache24" / "htdocs" / "phpmyadmin" / "config.inc.php"
-        if pma_config.exists():
-            try:
-                with open(pma_config, "r") as f:
-                    lines = f.readlines()
-                
-                new_lines = []
-                port_found = False
-                for line in lines:
-                    if "$cfg['Servers'][$i]['port'] =" in line:
-                        new_lines.append(f"$cfg['Servers'][$i]['port'] = '{port}';\n")
-                        port_found = True
-                    else:
-                        new_lines.append(line)
-                
-                if not port_found:
-                    # Insert port after host or after the first Servers line
-                    for i, line in enumerate(new_lines):
-                        if "$cfg['Servers'][$i]['host'] =" in line:
-                            new_lines.insert(i + 1, f"$cfg['Servers'][$i]['port'] = '{port}';\n")
+        candidates = [
+            Path(config_manager.get("install_dir")) / "apache" / "Apache24" / "htdocs" / "phpmyadmin" / "config.inc.php",
+        ]
+        htdocs_val = config_manager.get("htdocs_dir")
+        if htdocs_val:
+            candidates.append(Path(htdocs_val) / "phpmyadmin" / "config.inc.php")
+
+        for pma_config in candidates:
+            if pma_config.exists():
+                try:
+                    with open(pma_config, "r") as f:
+                        lines = f.readlines()
+                    
+                    new_lines = []
+                    port_found = False
+                    for line in lines:
+                        if "$cfg['Servers'][$i]['port'] =" in line:
+                            new_lines.append(f"$cfg['Servers'][$i]['port'] = '{port}';\n")
                             port_found = True
-                            break
-                
-                if port_found:
-                    with open(pma_config, "w") as f:
-                        f.writelines(new_lines)
-            except Exception as e:
-                print(f"Failed to sync phpMyAdmin port: {e}")
+                        else:
+                            new_lines.append(line)
+                    
+                    if not port_found:
+                        # Insert port after host or after the first Servers line
+                        for i, line in enumerate(new_lines):
+                            if "$cfg['Servers'][$i]['host'] =" in line:
+                                new_lines.insert(i + 1, f"$cfg['Servers'][$i]['port'] = '{port}';\n")
+                                port_found = True
+                                break
+                    
+                    if port_found:
+                        with open(pma_config, "w") as f:
+                            f.writelines(new_lines)
+                except Exception as e:
+                    print(f"Failed to sync phpMyAdmin port: {e}")
 
 
     def start_server(self):

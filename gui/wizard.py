@@ -56,7 +56,22 @@ class SetupWizard(ctk.CTkToplevel):
         
         # Use default from config as initial value
         current_root = Path(config_manager.get("install_dir")).parent
+        if not current_root.exists() and Path("C:/PyAMPP").exists():
+            current_root = Path("C:/PyAMPP")
         self.install_root_var = ctk.StringVar(value=str(current_root))
+        
+        legacy_htdocs = Path(current_root) / "bin" / "apache" / "Apache24" / "htdocs"
+        if not legacy_htdocs.exists():
+            legacy_htdocs = Path(config_manager.get("install_dir")) / "apache" / "Apache24" / "htdocs"
+
+        if legacy_htdocs.exists():
+            default_htdocs = str(legacy_htdocs)
+        elif config_manager.get("htdocs_dir") and Path(config_manager.get("htdocs_dir")).exists():
+            default_htdocs = config_manager.get("htdocs_dir")
+        else:
+            default_htdocs = str(current_root / "htdocs")
+
+        self.htdocs_dir_var = ctk.StringVar(value=default_htdocs)
         
         self.main_frame = ctk.CTkFrame(self, fg_color="transparent")
         self.main_frame.pack(expand=True, fill="both", padx=30, pady=30)
@@ -143,20 +158,37 @@ class SetupWizard(ctk.CTkToplevel):
         skip_btn.pack(side="right", padx=10)
 
     def step_path(self):
-        label = ctk.CTkLabel(self.main_frame, text="Choose Installation Path", font=ctk.CTkFont(size=20, weight="bold"))
-        label.pack(pady=(0, 20))
+        label = ctk.CTkLabel(self.main_frame, text="Choose Installation Paths", font=ctk.CTkFont(size=20, weight="bold"))
+        label.pack(pady=(0, 15))
         
-        desc = ctk.CTkLabel(self.main_frame, text="Select where you want PyAMPP to install its binaries and data.\nWe recommend using a path without spaces.", justify="left")
-        desc.pack(pady=(0, 20), anchor="w")
+        desc = ctk.CTkLabel(self.main_frame, text="Select where you want PyAMPP to install binaries, MySQL data, and web root.\nWe recommend using paths without spaces.", justify="left")
+        desc.pack(pady=(0, 15), anchor="w")
         
+        # 1. Install Directory (Binaries & MySQL Data)
+        inst_label = ctk.CTkLabel(self.main_frame, text="Installation Directory (Binaries & MySQL Data):", font=ctk.CTkFont(size=12, weight="bold"))
+        inst_label.pack(anchor="w", pady=(5, 2))
+
         path_frame = ctk.CTkFrame(self.main_frame, fg_color="transparent")
-        path_frame.pack(fill="x", pady=10)
+        path_frame.pack(fill="x", pady=(0, 10))
         
         entry = ctk.CTkEntry(path_frame, textvariable=self.install_root_var, width=400)
         entry.pack(side="left", padx=(0, 10), expand=True, fill="x")
         
         browse_btn = ctk.CTkButton(path_frame, text="Browse", width=80, command=self.browse_path)
         browse_btn.pack(side="left")
+
+        # 2. Document Root (htdocs)
+        htdocs_label = ctk.CTkLabel(self.main_frame, text="Document Root (htdocs / Web Files):", font=ctk.CTkFont(size=12, weight="bold"))
+        htdocs_label.pack(anchor="w", pady=(5, 2))
+
+        htdocs_frame = ctk.CTkFrame(self.main_frame, fg_color="transparent")
+        htdocs_frame.pack(fill="x", pady=(0, 10))
+
+        htdocs_entry = ctk.CTkEntry(htdocs_frame, textvariable=self.htdocs_dir_var, width=400)
+        htdocs_entry.pack(side="left", padx=(0, 10), expand=True, fill="x")
+
+        htdocs_browse_btn = ctk.CTkButton(htdocs_frame, text="Browse", width=80, command=self.browse_htdocs_path)
+        htdocs_browse_btn.pack(side="left")
         
         btn_frame = ctk.CTkFrame(self.main_frame, fg_color="transparent")
         btn_frame.pack(side="bottom", fill="x", pady=20)
@@ -168,18 +200,34 @@ class SetupWizard(ctk.CTkToplevel):
         back_btn.pack(side="right", padx=10)
 
     def browse_path(self):
+        old_root = self.install_root_var.get()
         self.attributes("-topmost", False)
-        new_dir = filedialog.askdirectory(initialdir=self.install_root_var.get(), parent=self)
+        new_dir = filedialog.askdirectory(initialdir=old_root, parent=self)
         self.attributes("-topmost", True)
         if new_dir:
-            self.install_root_var.set(new_dir)
+            norm_dir = os.path.normpath(new_dir)
+            self.install_root_var.set(norm_dir)
+            # Auto-update htdocs_dir if it was default matching old_root/htdocs
+            current_htdocs = self.htdocs_dir_var.get()
+            if not current_htdocs or current_htdocs == os.path.normpath(str(Path(old_root) / "htdocs")):
+                self.htdocs_dir_var.set(os.path.normpath(str(Path(norm_dir) / "htdocs")))
+
+    def browse_htdocs_path(self):
+        self.attributes("-topmost", False)
+        new_dir = filedialog.askdirectory(initialdir=self.htdocs_dir_var.get(), parent=self)
+        self.attributes("-topmost", True)
+        if new_dir:
+            self.htdocs_dir_var.set(os.path.normpath(new_dir))
 
     def save_path_and_next(self):
-        new_root = Path(self.install_root_var.get())
+        new_root = Path(self.install_root_var.get().strip())
+        new_htdocs = Path(self.htdocs_dir_var.get().strip())
         try:
             new_root.mkdir(parents=True, exist_ok=True)
-            config_manager.set("install_dir", str(new_root / "bin"))
-            config_manager.set("mysql_data_dir", str(new_root / "mysql_data"))
+            new_htdocs.mkdir(parents=True, exist_ok=True)
+            config_manager.set("install_dir", os.path.normpath(str(new_root / "bin")))
+            config_manager.set("mysql_data_dir", os.path.normpath(str(new_root / "mysql_data")))
+            config_manager.set("htdocs_dir", os.path.normpath(str(new_htdocs)))
             self.show_step(2)
         except Exception as e:
             self.attributes("-topmost", False)
@@ -316,6 +364,9 @@ class SetupWizard(ctk.CTkToplevel):
                                 htdocs_dir = (extract_to / "Apache24" / "htdocs").resolve()
                                 if htdocs_dir.exists():
                                     to_keep.append(htdocs_dir)
+                                cfg_htdocs = Path(config_manager.get("htdocs_dir", "")).resolve()
+                                if cfg_htdocs.exists() and cfg_htdocs.is_relative_to(extract_to.resolve()):
+                                    to_keep.append(cfg_htdocs)
 
                             if to_keep:
                                 self.log(f"{service.capitalize()} requires surgical cleanup to preserve important data...", "INFO")

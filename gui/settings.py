@@ -36,21 +36,16 @@ class SettingsFrame(ctk.CTkFrame):
         
         self.php_preset = ctk.CTkOptionMenu(self, values=list(COMPONENTS_PRESETS["PHP"].keys()), command=lambda v: self.update_url("php", v))
         self.php_preset.set("Custom")
-        # Try to find which preset matches current URL
         current_php_url = config_manager.get("php_url")
         for k, v in COMPONENTS_PRESETS["PHP"].items():
             if v == current_php_url:
                 self.php_preset.set(k)
                 break
         self.php_preset.grid(row=2, column=1, padx=20, pady=5, sticky="ew")
-        
-        self.php_url_entry = ctk.CTkEntry(self)
-        self.php_url_entry.insert(0, config_manager.get("php_url"))
-        self.php_url_entry.grid(row=3, column=1, padx=20, pady=(0, 10), sticky="ew")
 
         # Apache
         self.apache_label = ctk.CTkLabel(self, text="Apache Version:")
-        self.apache_label.grid(row=4, column=0, padx=20, pady=5, sticky="w")
+        self.apache_label.grid(row=3, column=0, padx=20, pady=5, sticky="w")
         
         self.apache_preset = ctk.CTkOptionMenu(self, values=list(COMPONENTS_PRESETS["Apache"].keys()), command=lambda v: self.update_url("apache", v))
         self.apache_preset.set("Custom")
@@ -59,15 +54,11 @@ class SettingsFrame(ctk.CTkFrame):
             if v == current_apache_url:
                 self.apache_preset.set(k)
                 break
-        self.apache_preset.grid(row=4, column=1, padx=20, pady=5, sticky="ew")
-        
-        self.apache_url_entry = ctk.CTkEntry(self)
-        self.apache_url_entry.insert(0, config_manager.get("apache_url"))
-        self.apache_url_entry.grid(row=5, column=1, padx=20, pady=(0, 10), sticky="ew")
+        self.apache_preset.grid(row=3, column=1, padx=20, pady=5, sticky="ew")
 
         # MySQL
         self.mysql_label = ctk.CTkLabel(self, text="MySQL Version:")
-        self.mysql_label.grid(row=6, column=0, padx=20, pady=5, sticky="w")
+        self.mysql_label.grid(row=4, column=0, padx=20, pady=5, sticky="w")
         
         self.mysql_preset = ctk.CTkOptionMenu(self, values=list(COMPONENTS_PRESETS["MySQL"].keys()), command=lambda v: self.update_url("mysql", v))
         self.mysql_preset.set("Custom")
@@ -76,15 +67,11 @@ class SettingsFrame(ctk.CTkFrame):
             if v == current_mysql_url:
                 self.mysql_preset.set(k)
                 break
-        self.mysql_preset.grid(row=6, column=1, padx=20, pady=5, sticky="ew")
-        
-        self.mysql_url_entry = ctk.CTkEntry(self)
-        self.mysql_url_entry.insert(0, config_manager.get("mysql_url"))
-        self.mysql_url_entry.grid(row=7, column=1, padx=20, pady=(0, 10), sticky="ew")
+        self.mysql_preset.grid(row=4, column=1, padx=20, pady=5, sticky="ew")
 
         # phpMyAdmin
         self.pma_label = ctk.CTkLabel(self, text="phpMyAdmin Version:")
-        self.pma_label.grid(row=8, column=0, padx=20, pady=5, sticky="w")
+        self.pma_label.grid(row=5, column=0, padx=20, pady=5, sticky="w")
         
         self.pma_preset = ctk.CTkOptionMenu(self, values=list(COMPONENTS_PRESETS["phpMyAdmin"].keys()), command=lambda v: self.update_url("phpmyadmin", v))
         self.pma_preset.set("Custom")
@@ -93,26 +80,73 @@ class SettingsFrame(ctk.CTkFrame):
             if v == current_pma_url:
                 self.pma_preset.set(k)
                 break
-        self.pma_preset.grid(row=8, column=1, padx=20, pady=5, sticky="ew")
-        
-        self.pma_url_entry = ctk.CTkEntry(self)
+        self.pma_preset.grid(row=5, column=1, padx=20, pady=5, sticky="ew")
+
+        # Collapsible Custom URLs Toggle Button
+        self.show_urls = False
+        self.toggle_urls_btn = ctk.CTkButton(
+            self,
+            text="▶ Custom Download URLs (Advanced)",
+            command=self.toggle_custom_urls,
+            fg_color="transparent",
+            text_color=["#3b8ed0", "#60a5fa"],
+            hover_color=["#f1f5f9", "#1e293b"],
+            anchor="w",
+            font=ctk.CTkFont(size=12, weight="bold"),
+            height=26
+        )
+        self.toggle_urls_btn.grid(row=6, column=0, columnspan=2, padx=20, pady=(6, 4), sticky="w")
+
+        # Custom URLs Container Frame (Collapsed by Default)
+        self.custom_urls_frame = ctk.CTkFrame(self, fg_color=["#f8fafc", "#141c2b"], corner_radius=8, border_width=1, border_color=["#e2e8f0", "#2d3748"])
+        self.custom_urls_frame.grid(row=7, column=0, columnspan=2, padx=20, pady=(0, 8), sticky="ew")
+        self.custom_urls_frame.grid_columnconfigure(1, weight=1)
+
+        # PHP URL
+        self.php_url_lbl = ctk.CTkLabel(self.custom_urls_frame, text="PHP URL:", font=ctk.CTkFont(size=11))
+        self.php_url_lbl.grid(row=0, column=0, padx=15, pady=4, sticky="w")
+        self.php_url_entry = ctk.CTkEntry(self.custom_urls_frame)
+        self.php_url_entry.insert(0, config_manager.get("php_url"))
+        self.php_url_entry.grid(row=0, column=1, padx=15, pady=4, sticky="ew")
+
+        # Apache URL
+        self.apache_url_lbl = ctk.CTkLabel(self.custom_urls_frame, text="Apache URL:", font=ctk.CTkFont(size=11))
+        self.apache_url_lbl.grid(row=1, column=0, padx=15, pady=4, sticky="w")
+        self.apache_url_entry = ctk.CTkEntry(self.custom_urls_frame)
+        self.apache_url_entry.insert(0, config_manager.get("apache_url"))
+        self.apache_url_entry.grid(row=1, column=1, padx=15, pady=4, sticky="ew")
+
+        # MySQL URL
+        self.mysql_url_lbl = ctk.CTkLabel(self.custom_urls_frame, text="MySQL URL:", font=ctk.CTkFont(size=11))
+        self.mysql_url_lbl.grid(row=2, column=0, padx=15, pady=4, sticky="w")
+        self.mysql_url_entry = ctk.CTkEntry(self.custom_urls_frame)
+        self.mysql_url_entry.insert(0, config_manager.get("mysql_url"))
+        self.mysql_url_entry.grid(row=2, column=1, padx=15, pady=4, sticky="ew")
+
+        # phpMyAdmin URL
+        self.pma_url_lbl = ctk.CTkLabel(self.custom_urls_frame, text="phpMyAdmin URL:", font=ctk.CTkFont(size=11))
+        self.pma_url_lbl.grid(row=3, column=0, padx=15, pady=4, sticky="w")
+        self.pma_url_entry = ctk.CTkEntry(self.custom_urls_frame)
         self.pma_url_entry.insert(0, config_manager.get("phpmyadmin_url"))
-        self.pma_url_entry.grid(row=9, column=1, padx=20, pady=(0, 10), sticky="ew")
+        self.pma_url_entry.grid(row=3, column=1, padx=15, pady=4, sticky="ew")
+
+        # Collapse on default
+        self.custom_urls_frame.grid_remove()
 
         # LAN Access
         self.lan_access_label = ctk.CTkLabel(self, text="Enable LAN Access:")
-        self.lan_access_label.grid(row=10, column=0, padx=20, pady=10, sticky="w")
+        self.lan_access_label.grid(row=8, column=0, padx=20, pady=10, sticky="w")
         self.lan_access_switch = ctk.CTkSwitch(self, text="")
         if config_manager.get("lan_access"):
             self.lan_access_switch.select()
-        self.lan_access_switch.grid(row=10, column=1, padx=20, pady=10, sticky="w")
+        self.lan_access_switch.grid(row=8, column=1, padx=20, pady=10, sticky="w")
 
         # Install Directory
         self.install_dir_label = ctk.CTkLabel(self, text="Install Directory:")
-        self.install_dir_label.grid(row=11, column=0, padx=20, pady=10, sticky="w")
+        self.install_dir_label.grid(row=9, column=0, padx=20, pady=10, sticky="w")
         
         self.install_dir_frame = ctk.CTkFrame(self, fg_color="transparent")
-        self.install_dir_frame.grid(row=11, column=1, padx=20, pady=10, sticky="ew")
+        self.install_dir_frame.grid(row=9, column=1, padx=20, pady=10, sticky="ew")
         self.install_dir_frame.grid_columnconfigure(0, weight=1)
 
         self.install_dir_entry = ctk.CTkEntry(self.install_dir_frame)
@@ -123,12 +157,27 @@ class SettingsFrame(ctk.CTkFrame):
         self.browse_btn = ctk.CTkButton(self.install_dir_frame, text="Browse", width=60, command=self.browse_install_dir)
         self.browse_btn.grid(row=0, column=1)
 
+        # Document Root (htdocs)
+        self.htdocs_dir_label = ctk.CTkLabel(self, text="Document Root (htdocs):")
+        self.htdocs_dir_label.grid(row=10, column=0, padx=20, pady=10, sticky="w")
+        
+        self.htdocs_dir_frame = ctk.CTkFrame(self, fg_color="transparent")
+        self.htdocs_dir_frame.grid(row=10, column=1, padx=20, pady=10, sticky="ew")
+        self.htdocs_dir_frame.grid_columnconfigure(0, weight=1)
+
+        self.htdocs_dir_entry = ctk.CTkEntry(self.htdocs_dir_frame)
+        self.htdocs_dir_entry.insert(0, os.path.normpath(str(config_manager.get("htdocs_dir"))))
+        self.htdocs_dir_entry.grid(row=0, column=0, sticky="ew", padx=(0, 10))
+        
+        self.browse_htdocs_btn = ctk.CTkButton(self.htdocs_dir_frame, text="Browse", width=60, command=self.browse_htdocs_dir)
+        self.browse_htdocs_btn.grid(row=0, column=1)
+
         # Presets URL
         self.presets_url_label = ctk.CTkLabel(self, text="Presets URL (JSON):")
-        self.presets_url_label.grid(row=12, column=0, padx=20, pady=5, sticky="w")
+        self.presets_url_label.grid(row=11, column=0, padx=20, pady=5, sticky="w")
         
         self.presets_url_frame = ctk.CTkFrame(self, fg_color="transparent")
-        self.presets_url_frame.grid(row=12, column=1, padx=20, pady=5, sticky="ew")
+        self.presets_url_frame.grid(row=11, column=1, padx=20, pady=5, sticky="ew")
         self.presets_url_frame.grid_columnconfigure(0, weight=1)
         
         self.presets_url_entry = ctk.CTkEntry(self.presets_url_frame)
@@ -140,15 +189,15 @@ class SettingsFrame(ctk.CTkFrame):
 
         # Auto Run on Startup
         self.startup_label = ctk.CTkLabel(self, text="Auto Run on Startup:")
-        self.startup_label.grid(row=13, column=0, padx=20, pady=10, sticky="w")
+        self.startup_label.grid(row=12, column=0, padx=20, pady=10, sticky="w")
         self.startup_switch = ctk.CTkSwitch(self, text="", command=self.toggle_startup)
         if self.check_startup():
             self.startup_switch.select()
-        self.startup_switch.grid(row=13, column=1, padx=20, pady=10, sticky="w")
+        self.startup_switch.grid(row=12, column=1, padx=20, pady=10, sticky="w")
 
         # Buttons Frame
         self.btn_frame = ctk.CTkFrame(self, fg_color="transparent")
-        self.btn_frame.grid(row=14, column=0, columnspan=2, padx=20, pady=20)
+        self.btn_frame.grid(row=13, column=0, columnspan=2, padx=20, pady=20)
         
         # Save Button
         self.save_button = ctk.CTkButton(self.btn_frame, text="Save Config", command=self.save_settings)
@@ -161,6 +210,15 @@ class SettingsFrame(ctk.CTkFrame):
         # Progress bar (hidden by default)
         self.progress_bar = ctk.CTkProgressBar(self)
         self.progress_bar.set(0)
+
+    def toggle_custom_urls(self):
+        self.show_urls = not self.show_urls
+        if self.show_urls:
+            self.toggle_urls_btn.configure(text="▼ Custom Download URLs (Hide)")
+            self.custom_urls_frame.grid()
+        else:
+            self.toggle_urls_btn.configure(text="▶ Custom Download URLs (Advanced)")
+            self.custom_urls_frame.grid_remove()
 
     def check_startup(self):
         import winreg
@@ -307,6 +365,10 @@ class SettingsFrame(ctk.CTkFrame):
         install_root = Path(config_manager.get("install_dir")).parent
         self.install_dir_entry.insert(0, str(install_root))
 
+        # Document Root (htdocs)
+        self.htdocs_dir_entry.delete(0, "end")
+        self.htdocs_dir_entry.insert(0, os.path.normpath(str(config_manager.get("htdocs_dir"))))
+
         # Presets URL
         self.presets_url_entry.delete(0, "end")
         self.presets_url_entry.insert(0, config_manager.get("presets_url"))
@@ -331,7 +393,14 @@ class SettingsFrame(ctk.CTkFrame):
         new_dir = filedialog.askdirectory(initialdir=self.install_dir_entry.get())
         if new_dir:
             self.install_dir_entry.delete(0, "end")
-            self.install_dir_entry.insert(0, new_dir)
+            self.install_dir_entry.insert(0, os.path.normpath(new_dir))
+
+    def browse_htdocs_dir(self):
+        from tkinter import filedialog
+        new_dir = filedialog.askdirectory(initialdir=self.htdocs_dir_entry.get())
+        if new_dir:
+            self.htdocs_dir_entry.delete(0, "end")
+            self.htdocs_dir_entry.insert(0, os.path.normpath(new_dir))
 
     def save_settings(self, show_msg=True, restart_if_running=True):
         try:
@@ -344,9 +413,21 @@ class SettingsFrame(ctk.CTkFrame):
             config_manager.set("lan_access", bool(self.lan_access_switch.get()))
             config_manager.set("presets_url", self.presets_url_entry.get().strip())
             
-            new_root = Path(self.install_dir_entry.get())
-            config_manager.set("install_dir", str(new_root / "bin"))
-            config_manager.set("mysql_data_dir", str(new_root / "mysql_data"))
+            new_root = Path(self.install_dir_entry.get().strip())
+            config_manager.set("install_dir", os.path.normpath(str(new_root / "bin")))
+            config_manager.set("mysql_data_dir", os.path.normpath(str(new_root / "mysql_data")))
+            
+            new_htdocs = Path(self.htdocs_dir_entry.get().strip())
+            new_htdocs.mkdir(parents=True, exist_ok=True)
+            config_manager.set("htdocs_dir", os.path.normpath(str(new_htdocs)))
+            
+            # Configure Apache with the latest settings
+            try:
+                from core.apache_manager import ApacheManager
+                apache = ApacheManager()
+                apache.configure()
+            except Exception as e:
+                self.logger.log(f"Warning: Could not configure Apache: {e}", "WARNING")
             
             # Refresh dashboard and restart servers if available
             try:
@@ -476,6 +557,9 @@ class SettingsFrame(ctk.CTkFrame):
                                 htdocs_dir = (extract_to / "Apache24" / "htdocs").resolve()
                                 if htdocs_dir.exists():
                                     to_keep.append(htdocs_dir)
+                                cfg_htdocs = Path(config_manager.get("htdocs_dir", "")).resolve()
+                                if cfg_htdocs.exists() and cfg_htdocs.is_relative_to(extract_to.resolve()):
+                                    to_keep.append(cfg_htdocs)
 
                             if to_keep:
                                 self.logger.log(f"{comp.capitalize()} requires surgical cleanup to preserve important data...", "INFO")

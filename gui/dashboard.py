@@ -449,7 +449,7 @@ class DashboardFrame(ctk.CTkFrame):
             self.php_path_lbl.configure(text="Path: Not installed")
 
         # phpMyAdmin Info
-        pma_dir = Path(self.apache.install_dir) / "htdocs" / "phpmyadmin"
+        pma_dir = self.get_pma_dir()
         pma_installed = pma_dir.exists() and any(pma_dir.iterdir())
 
         self.update_badge(self.pma_badge, "Installed" if pma_installed else "Not Installed", "installed" if pma_installed else "not_installed")
@@ -512,8 +512,26 @@ class DashboardFrame(ctk.CTkFrame):
         
         threading.Thread(target=self.run_setup_and_start, args=("php",), kwargs={"force": is_installed}).start()
 
-    def setup_pma(self):
+    def get_htdocs_dir(self):
+        htdocs_val = config_manager.get("htdocs_dir")
+        if htdocs_val:
+            return Path(htdocs_val)
+        legacy_htdocs = Path(self.apache.install_dir) / "htdocs"
+        if legacy_htdocs.exists():
+            return legacy_htdocs
+        return Path(config_manager.get("install_dir")).parent / "htdocs"
+
+    def get_pma_dir(self):
         pma_dir = Path(self.apache.install_dir) / "htdocs" / "phpmyadmin"
+        if pma_dir.exists() and any(pma_dir.iterdir()):
+            return pma_dir
+        htdocs_val = config_manager.get("htdocs_dir")
+        if htdocs_val and (Path(htdocs_val) / "phpmyadmin").exists() and any((Path(htdocs_val) / "phpmyadmin").iterdir()):
+            return Path(htdocs_val) / "phpmyadmin"
+        return pma_dir
+
+    def setup_pma(self):
+        pma_dir = self.get_pma_dir()
         is_installed = pma_dir.exists() and any(pma_dir.iterdir())
         
         if is_installed:
@@ -800,32 +818,29 @@ class DashboardFrame(ctk.CTkFrame):
         port = config_manager.get("apache_port")
         url = f"http://localhost:{port}/index.php"
         
-        htdocs = Path(self.apache.install_dir) / "htdocs"
-        if htdocs.exists():
-            index_file = htdocs / "index.php"
-            if not index_file.exists():
-                with open(index_file, "w") as f:
-                    f.write("<?php phpinfo(); ?>")
-                self.logger.log("Created sample index.php in htdocs.")
+        htdocs = self.get_htdocs_dir()
+        htdocs.mkdir(parents=True, exist_ok=True)
+        index_file = htdocs / "index.php"
+        if not index_file.exists():
+            with open(index_file, "w") as f:
+                f.write("<?php phpinfo(); ?>")
+            self.logger.log("Created sample index.php in htdocs.")
         
         self.logger.log(f"Opening {url} in browser...")
         webbrowser.open(url)
 
     def open_htdocs(self):
-        import subprocess
-        htdocs = Path(self.apache.install_dir) / "htdocs"
-        if htdocs.exists():
-            self.logger.log(f"Opening htdocs folder: {htdocs}")
-            os.startfile(htdocs)
-        else:
-            self.logger.log("htdocs folder not found. Please install Apache first.", "ERROR")
+        htdocs = self.get_htdocs_dir()
+        htdocs.mkdir(parents=True, exist_ok=True)
+        self.logger.log(f"Opening htdocs folder: {htdocs}")
+        os.startfile(htdocs)
 
     def open_pma(self):
         import webbrowser
         port = config_manager.get("apache_port")
         url = f"http://localhost:{port}/phpmyadmin/index.php"
-        pma_dir = Path(self.apache.install_dir) / "htdocs" / "phpmyadmin"
-        if pma_dir.exists():
+        pma_dir = self.get_pma_dir()
+        if pma_dir.exists() and any(pma_dir.iterdir()):
             self.logger.log(f"Opening phpMyAdmin: {url}")
             webbrowser.open(url)
         else:

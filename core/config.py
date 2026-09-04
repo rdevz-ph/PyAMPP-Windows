@@ -30,7 +30,7 @@ def get_appdata_dir():
 BASE_DIR = get_base_dir()
 APPDATA_DIR = get_appdata_dir()
 DATA_DIR = BASE_DIR / "data"
-VERSION = "v1.1.0"
+VERSION = "v1.1.1"
 
 # Internal resource directory (where .ps1 and other bundled files live)
 if getattr(sys, "frozen", False):
@@ -47,6 +47,7 @@ DEFAULT_CONFIG = {
     "phpmyadmin_url": "https://files.phpmyadmin.net/phpMyAdmin/5.2.3/phpMyAdmin-5.2.3-all-languages.zip",
     "install_dir": "C:\\PyAMPP\\bin",
     "mysql_data_dir": "C:\\PyAMPP\\mysql_data",
+    "htdocs_dir": "C:\\PyAMPP\\htdocs",
     "presets_url": "https://raw.githubusercontent.com/rdevz-ph/PyAMPP-Windows/main/presets.json",
     "lan_access": False,
     "wizard_completed": False,
@@ -120,6 +121,7 @@ class ConfigManager:
 
     def load(self):
         config_path = self.get_config_path()
+        saved_config = {}
         
         # 1. Load from AppData first
         if config_path.exists():
@@ -149,6 +151,21 @@ class ConfigManager:
         # Force update broken Apache URL if detected
         if "httpd-2.4.62-win64-VS17.zip" in self.config.get("apache_url", ""):
             self.config["apache_url"] = DEFAULT_CONFIG["apache_url"]
+
+        # Backward compatibility for htdocs_dir:
+        # If legacy htdocs exists on disk, preserve it so users aren't forced to migrate files
+        legacy_htdocs = Path(self.config["install_dir"]) / "apache" / "Apache24" / "htdocs"
+        if legacy_htdocs.exists():
+            # If not explicitly configured or the configured path doesn't exist, preserve legacy
+            if "htdocs_dir" not in saved_config or not saved_config.get("htdocs_dir") or not Path(saved_config.get("htdocs_dir", "")).exists():
+                self.config["htdocs_dir"] = os.path.normpath(str(legacy_htdocs))
+            else:
+                self.config["htdocs_dir"] = os.path.normpath(str(self.config["htdocs_dir"]))
+        else:
+            if "htdocs_dir" not in saved_config or not saved_config.get("htdocs_dir"):
+                self.config["htdocs_dir"] = os.path.normpath(str(Path(self.config["install_dir"]).parent / "htdocs"))
+            else:
+                self.config["htdocs_dir"] = os.path.normpath(str(self.config["htdocs_dir"]))
 
         # Load presets after main config to use correct install_dir
         updated_presets_path = Path(self.config["install_dir"]).parent / "updated_config.json"
@@ -200,8 +217,8 @@ class ConfigManager:
             except Exception as e:
                 print(f"Error saving backup config: {e}")
 
-    def get(self, key):
-        return self.config.get(key)
+    def get(self, key, default=None):
+        return self.config.get(key, default)
 
     def set(self, key, value):
         self.config[key] = value

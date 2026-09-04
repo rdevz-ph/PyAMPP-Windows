@@ -1,11 +1,11 @@
 # Release Description
 PyAMPP is a standalone Windows executable for automating the deployment and management of a portable Apache, MySQL, and PHP development stack.
 
-## What's New in v1.1.0
-* **Modern High-DPI App Icon**: Designed a sleek, minimalist 2-color application icon with full multi-resolution support (`16x16` up to `256x256` HD) for Windows taskbar and desktop shortcuts.
-* **Automated CI/CD Release Pipeline**: Added GitHub Actions workflow (`release.yml`) for automated building, artifact archiving, and GitHub Release publishing on Windows runners.
-* **Optimized Executable Size**: Streamlined PyInstaller build configuration in `build.py` to exclude unused heavy libraries, reducing the standalone executable size from ~30 MB down to ~17 MB.
-* **Enhanced Documentation**: Updated project badges to modern shields.io specifications and improved layout in documentation.
+## What's New in v1.1.1
+* **Custom Document Root (`htdocs`) Path Configuration**: Added options in both the **Settings** tab and the **Setup Wizard** to configure a custom web root directory (defaulting to `C:\PyAMPP\htdocs`).
+* **Full Backward Compatibility for Legacy Document Roots**: Automatically preserves existing `htdocs` folders if previously located at `<install_dir>\bin\apache\Apache24\htdocs` so existing users aren't forced to move or migrate files.
+* **Seamless phpMyAdmin Alias Integration**: Configured Apache `Alias /phpmyadmin` to allow full phpMyAdmin access without polluting custom web root folders.
+* **Collapsible Download URLs in Settings**: Component download URL entry fields are now tucked into an expandable container and collapsed by default, saving vertical space and providing a much cleaner configuration interface.
 
 > [!TIP]
 > **Full Version History**: For a detailed list of all technical changes and fixes, please refer to the [CHANGELOG.md](https://github.com/rdevz-ph/PyAMPP-Windows/blob/main/CHANGELOG.md).

@@ -2,6 +2,13 @@
 
 All notable changes to PyAMPP will be documented in this file.
 
+## [1.1.1] - 2026-09-04
+### Added
+* **Custom Document Root (`htdocs`) Path Configuration**: Added options in both the **Settings** tab and the **Setup Wizard** to configure a custom web root directory (defaulting to `C:\PyAMPP\htdocs`).
+* **Full Backward Compatibility for Legacy Document Roots**: Preserves existing `htdocs` directory if previously located at `<install_dir>\bin\apache\Apache24\htdocs` so existing users aren't forced to migrate files.
+* **Seamless phpMyAdmin Alias Integration**: Configured Apache `Alias /phpmyadmin` to allow full phpMyAdmin access without polluting custom web root folders.
+* **Collapsible Download URLs in Settings**: Component download URL entry fields are now tucked into an expandable container and collapsed by default, saving significant vertical space and presenting a much cleaner Settings tab.
+
 ## [1.1.0] - 2026-08-28
 ### Added
 * **Modern High-DPI App Icon**: Designed a clean, minimalist 2-color application icon with full multi-resolution support (16x16 up to 256x256 HD).
