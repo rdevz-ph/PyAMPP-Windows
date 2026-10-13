@@ -13,73 +13,66 @@
 
 ## Project Overview
 
-PyAMPP is an advanced Windows-based orchestration utility designed to automate the deployment and management of a local web development environment. It provides a centralized graphical interface for the integrated management of Apache HTTP Server, MySQL Database, PHP, and phpMyAdmin.
-
+PyAMPP is a portable web server manager for Windows. It provides a simple desktop app to set up and manage Apache, MySQL, PHP, and phpMyAdmin in one place.
 
 ## Download
 
-The latest stable version of PyAMPP can be downloaded from the official [Releases](https://github.com/rdevz-ph/PyAMPP-Windows/releases) page. Choose the latest release and download the standalone executable (`.exe`).
+Download the latest version from the [Releases](https://github.com/rdevz-ph/PyAMPP-Windows/releases) page. Pick the newest release and download the `.exe` file.
 
 > [!WARNING]
-> This tool is currently under development and may contain bugs or be unstable as it is maintained by a solo developer. If you encounter any issues, please state your current application version and [open an issue](https://github.com/rdevz-ph/PyAMPP-Windows/issues).
+> This tool is actively being developed and may contain bugs. If you run into issues, please include your app version and [open an issue](https://github.com/rdevz-ph/PyAMPP-Windows/issues).
 
-## Core Objectives
+## Goals
 
-1.  **True Portability:** Consolidates all binaries, configuration templates, and data directories into a single root directory, ensuring the environment remains independent of the host system.
-2.  **Zero-Configuration Logic:** Dynamically calculates paths, ports, and module mappings at runtime, eliminating the need for manual edits to `httpd.conf`, `my.ini`, or `php.ini`.
-3.  **Automated Lifecycle:** A built-in wizard handles the retrieval, validation, and extraction of official binaries, keeping the stack current with zero administrative overhead.
+1. **Portable:** Keeps all program files, settings, and database files in one folder, so you can move it without breaking things.
+2. **Ready to Use:** Automatically sets up paths and configuration files, so you do not have to edit `httpd.conf`, `my.ini`, or `php.ini` by hand.
+3. **Easy Setup:** A built-in setup wizard downloads and installs the required files for you.
 
-## Advanced Features
+## Features
 
-### Intelligent Service Orchestration
-- **Detached Execution:** Services run as independent process trees, ensuring stability even if the GUI is closed.
-- **Real-Time Monitoring:** Continuous tracking of Process IDs (PIDs) and port availability with an integrated log aggregator.
-- **Unified Controls:** One-click "Start All", "Stop All", and "Restart All" functionality.
-- **Hardened Process Isolation:** Improved binary execution logic prevents DLL conflicts (e.g., `VCRUNTIME140.dll` mismatches) by running services in a completely isolated environment.
+### Service Management
+- **Independent Processes:** Apache and MySQL keep running even if you close the app window.
+- **Live Status:** View process IDs (PIDs), CPU, memory usage, and server logs in real time.
+- **Quick Controls:** Start, stop, or restart all servers with one click.
+- **DLL Conflict Fix:** Includes runtime fixes to prevent common Visual C++ DLL errors.
 
-### Dynamic Environment Mapping
-- **PHP Extension Automation:** Automatically enables and maps essential extensions (`mysqli`, `mbstring`, `openssl`, `curl`, `pdo_mysql`, `zip`, `gd`, `fileinfo`, `intl`, `exif`, etc.) using absolute local paths.
-- **Global CLI Integration:** Built-in PowerShell automation to register the portable PHP binary in the System PATH, enabling CLI tools like Composer or Artisan.
-- **phpMyAdmin Security:** Automated deployment with dynamic `blowfish_secret` generation and restricted local-only access controls.
-- **LAN Toggle:** Rapidly switch between local-loopback and network-exposed states with automatic subnet detection for Apache access control.
-- **Intelligent Module Mapping:** Dynamically detects the correct PHP module name (e.g., `php7_module` vs `php_module`) based on the active version.
+### Web Server and PHP Tools
+- **Custom Document Root:** Choose your own `htdocs` folder in the setup wizard or settings tab without moving existing files.
+- **Automatic PHP Extensions:** Automatically enables common extensions like `mysqli`, `curl`, `mbstring`, `openssl`, `zip`, and `gd`.
+- **PHP CLI in System PATH:** Add the portable PHP folder to your Windows PATH to run tools like Composer from the command line.
+- **phpMyAdmin Setup:** Sets up phpMyAdmin with automatic secret key generation and local access control without cluttering your web root.
+- **LAN Access Switch:** Allow or block other devices on your local network from opening your sites.
+- **SSL Auto-Fix:** Automatically generates self-signed certificates so you can test HTTPS on `localhost`.
 
-### Lifecycle & Version Management
-- **Version Preset Selection:** Choose specific versions for each component from a curated list of presets (from PHP 7.4 to 8.5).
-- **Smart Reinstallation & Cleanup:** Performs a clean sweep of old binaries while strictly preserving MySQL data when updating or switching versions.
+### Version Selection
+- **Version Presets:** Choose from supported versions of PHP, Apache, MySQL, and phpMyAdmin.
+- **Safe Updates:** Reinstalls or changes server versions without deleting your MySQL databases or web files.
+- **Collapsible Download URLs:** Custom download links in settings are collapsed by default to keep the screen clean.
 
-## Supported Versions (Presets)
+## Supported Versions
 
-PyAMPP supports a wide range of verified component versions. For full transparency, you can verify all official binary download URLs in the [presets.json](presets.json) file:
+PyAMPP includes tested download presets for the following components (defined in [presets.json](presets.json)):
 
-- **PHP:** 8.5.6 (VS17), 8.4.21, 8.3.31, 8.2.31, 8.1.34, 8.0.30 (Archive), and 7.4.33 (Archive).
-- **Apache:** 2.4.66 (VS17).
-- **MySQL:** 8.4.4 (LTS), 8.0.40, 5.7.44.
-- **phpMyAdmin:** 5.2.3, 5.2.2, 5.2.1.
+- **PHP:** 8.5.6, 8.4.21, 8.3.31, 8.2.31, 8.1.34, 8.0.30, and 7.4.33.
+- **Apache:** 2.4.66.
+- **MySQL:** 8.4.4, 8.0.40, and 5.7.44.
+- **phpMyAdmin:** 5.2.3, 5.2.2, and 5.2.1.
 
-## Visual Interface
+## Screenshots
 
 | Dashboard | Diagnostics | PHP Extensions |
 | :---: | :---: | :---: |
 | ![PyAMPP Dashboard](screenshots/Screenshot-1.png) | ![PyAMPP Diagnostics](screenshots/Screenshot-2.png) | ![PyAMPP PHP Extensions](screenshots/Screenshot-3.png) |
 
-*The centralized dashboard provides real-time monitoring and one-click control over the entire development stack, while the diagnostics panel performs health checks and validates configurations, and the PHP Extensions manager allows toggling php.ini extensions dynamically.*
+The dashboard displays live status and controls for each service. The diagnostics tab tests connections and SSL, while the PHP extensions tab lets you enable or disable extensions in `php.ini`.
 
 > [!NOTE]
-> An "Untrusted" status for the local Certificate Authority (CA) is completely normal in a development environment, as PyAMPP generates self-signed certificates for local SSL encryption.
+> An untrusted certificate warning in your browser is normal for local development because PyAMPP creates self-signed certificates for testing HTTPS on your computer.
 
-## Technical Specifications
+## Requirements
 
-- **Engine:** Python 3.x
-- **GUI:** CustomTkinter (Modern, High-DPI aware)
-- **Networking:** Synchronous socket validation and subnet discovery.
-- **Architecture:** 64-bit optimized (VS17 Runtimes).
-
-## System Architecture
-
-- **Core Layer:** Management of binaries, configuration templating, and low-level process control.
-- **GUI Layer:** Modular dashboard, setup wizard, log aggregator, and global settings.
-- **Automation Layer:** PowerShell integration for system-wide environment pathing.
+- **Operating System:** Windows (64-bit)
+- **Built with:** Python 3 and CustomTkinter
 
 ## Building from Source
 
@@ -104,35 +97,34 @@ python main.py
 ```
 
 ### 4. Build Standalone Executable
-PyAMPP includes an automated build script configured with PyInstaller to package CustomTkinter themes, icons, and modules into a single portable executable:
+Run the build script to create a standalone `.exe` file:
 ```bash
 python build.py
 ```
-The compiled executable will be created in the `dist/` folder (e.g., `dist/PyAMPP_<version>.exe`).
+The executable will be saved in the `dist/` folder (for example, `dist/PyAMPP_v1.1.1.exe`).
 
 ## Documentation
 
-For more detailed information, technical guides, and visual overviews, visit our documentation site:
-**[View Detailed Documentation](https://rdevz-ph.github.io/PyAMPP-Windows/)**
+For guides and more information, visit the [PyAMPP Documentation site](https://rdevz-ph.github.io/PyAMPP-Windows/).
 
 ## Frequently Asked Questions
 
-### Why use PyAMPP instead of a modern Docker-based setup?
-While Docker is extremely powerful, it can feel resource-heavy and consume significant storage, especially when building and maintaining multiple containers. PyAMPP provides a lightweight, portable alternative that is much faster to initialize and easier to manage for standard PHP development without the overhead of virtualization.
+### Why use PyAMPP instead of Docker?
+Docker is powerful, but it can use a lot of memory and disk space. PyAMPP runs directly on Windows without virtualization, making it lighter and faster to start for regular PHP development.
 
-### Is PyAMPP really portable?
-Yes. The application executable is portable; however, dependencies are stored in the chosen installation directory. If you move the application folder, simply update the installation directory settings within the app to ensure everything continues to work seamlessly.
+### Is PyAMPP portable?
+Yes. The app runs as a single file, and all downloaded programs stay in your selected installation folder. If you move the folder to another location, update the install path in the Settings tab.
 
-### Can I add my own custom PHP or MySQL versions?
-Currently, PyAMPP uses verified presets defined in `presets.json` to ensure compatibility and automated configuration. Manual additions are possible by modifying the presets file, though official support is limited to the versions listed.
+### Can I use custom PHP or MySQL versions?
+PyAMPP uses the versions listed in `presets.json`. You can also enter custom download links in the Settings tab under Custom Download URLs.
 
-### Does it require Administrator privileges?
-Admin privileges are generally not required for basic operation, though they may be needed for specific automation tasks like registering PHP to the System PATH or toggling certain network firewall rules.
+### Do I need Administrator rights?
+No, regular use does not need administrator rights. You only need administrator rights if you want to add PHP to your Windows system PATH.
 
 ## License
- 
-This project is open-source software licensed under the [MIT License](LICENSE).
+
+This project is licensed under the [MIT License](LICENSE).
 
 ## Disclaimer
 
-PyAMPP is intended exclusively for local development and testing. Default configurations prioritize development speed over production-grade security hardening. Do not use for hosting public-facing services.
+PyAMPP is designed for local development and testing only. Do not use it to host public websites on the internet.
