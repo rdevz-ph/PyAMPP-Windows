@@ -11,6 +11,9 @@
   ![Version](https://img.shields.io/github/v/release/rdevz-ph/PyAMPP-Windows?color=f59e0b&label=version)
 </div>
 
+> [!WARNING]
+> This desktop version of PyAMPP is no longer maintained. Please use the new web version at [PyAMPP-Web](https://github.com/rdevz-ph/PyAMPP-Web) for active development, new features, and updates.
+
 ## Project Overview
 
 PyAMPP is a portable web server manager for Windows. It provides a simple desktop app to set up and manage Apache, MySQL, PHP, and phpMyAdmin in one place.
@@ -19,8 +22,8 @@ PyAMPP is a portable web server manager for Windows. It provides a simple deskto
 
 Download the latest version from the [Releases](https://github.com/rdevz-ph/PyAMPP-Windows/releases) page. Pick the newest release and download the `.exe` file.
 
-> [!WARNING]
-> This tool is actively being developed and may contain bugs. If you run into issues, please include your app version and [open an issue](https://github.com/rdevz-ph/PyAMPP-Windows/issues).
+> [!NOTE]
+> This repository is archived and will not receive future updates. For the latest releases and issue tracking, please visit [PyAMPP-Web](https://github.com/rdevz-ph/PyAMPP-Web).
 
 ## Goals
 
